@@ -1,0 +1,918 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.3">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Stories Beyond Sight&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="description" content="An organisation making creative works accessible for the visually impaired community — fostering imagination through original Braille literature."/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=DM+Mono:wght@300;400&amp;family=Lora:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">:root {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--ink: #1a1208;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--deep: #0f0b05;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--cream: #f5edd8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--parchment: #ece3ca;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--gold: #c8973a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--gold-light: #e8b85a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--rust: #9e4a2a;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--sage: #6b8c6e;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--muted: #7a6a50;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>--tab-active: var(--gold);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">html { scroll-behavior: smooth; }</p>
+<p class="p2"><br></p>
+<p class="p1">body {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Lora', Georgia, serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--ink);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--cream);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow-x: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cursor: none;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── CUSTOM CURSOR ─────────────────────────────────── */</p>
+<p class="p1">#cursor {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 12px; height: 12px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed; top: 0; left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>z-index: 9999;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: transform 0.15s ease, opacity 0.2s;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>mix-blend-mode: screen;</p>
+<p class="p1">}</p>
+<p class="p1">#cursor-ring {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 36px; height: 36px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1.5px solid rgba(200,151,58,0.4);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed; top: 0; left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>z-index: 9998;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: transform 0.35s ease;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── BRAILLE DOT BACKGROUND ─────────────────────────── */</p>
+<p class="p1">.dot-bg {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed; inset: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-image: radial-gradient(circle, rgba(200,151,58,0.07) 1px, transparent 1px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-size: 28px 28px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pointer-events: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>z-index: 0;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── GRAIN OVERLAY ──────────────────────────────────── */</p>
+<p class="p1">.grain {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed; inset: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");</p>
+<p class="p1"><span class="Apple-converted-space">  </span>pointer-events: none; z-index: 1; opacity: 0.6;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── NAV ─────────────────────────────────────────────── */</p>
+<p class="p1">nav {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: fixed; top: 0; left: 0; right: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>z-index: 100;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; justify-content: space-between;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 1.4rem 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: linear-gradient(to bottom, rgba(15,11,5,0.95) 0%, transparent 100%);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>backdrop-filter: blur(2px);</p>
+<p class="p1">}</p>
+<p class="p1">.nav-logo {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.08em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-transform: uppercase;</p>
+<p class="p1">}</p>
+<p class="p1">.nav-logo span { font-style: italic; font-weight: 300; color: var(--cream); }</p>
+<p class="p1">.nav-tabs {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 0.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(255,255,255,0.04);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1px solid rgba(200,151,58,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 0.35rem;</p>
+<p class="p1">}</p>
+<p class="p1">.nav-tab {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.68rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.1em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 0.5rem 1.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>cursor: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: all 0.3s ease;</p>
+<p class="p1">}</p>
+<p class="p1">.nav-tab:hover { color: var(--cream); }</p>
+<p class="p1">.nav-tab.active {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--ink);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 400;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── SECTIONS ────────────────────────────────────────── */</p>
+<p class="p1">section {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative; z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>min-height: 100vh;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: none;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>justify-content: center;</p>
+<p class="p1">}</p>
+<p class="p1">section.active { display: flex; }</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── HERO (TAB 1) ────────────────────────────────────── */</p>
+<p class="p1">#tab1 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>align-items: flex-start;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 0 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-eyebrow {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.7rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.25em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(20px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeUp 0.8s 0.3s forwards;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; gap: 1rem;</p>
+<p class="p1">}</p>
+<p class="p1">.hero-eyebrow::before {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: block; width: 40px; height: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--gold);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-headline {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: clamp(4rem, 9vw, 10rem);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 0.9;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>max-width: 900px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(30px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeUp 1s 0.5s forwards;</p>
+<p class="p1">}</p>
+<p class="p1">.hero-headline em {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: block;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-tagline {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.05rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.65);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>max-width: 500px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 3rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 400;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(20px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeUp 0.8s 0.9s forwards;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.hero-scroll {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>bottom: 3rem; left: 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.2em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.35);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeUp 0.8s 1.4s forwards;</p>
+<p class="p1">}</p>
+<p class="p1">.scroll-line {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 60px; height: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(245,237,216,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative; overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p1">.scroll-line::after {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: absolute; top: 0; left: -100%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 100%; height: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: scanLine 2s 2s infinite ease-in-out;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Large decorative braille dots (right side) */</p>
+<p class="p1">.hero-braille {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>right: 3rem; top: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: repeat(2, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeIn 1.5s 1s forwards;</p>
+<p class="p1">}</p>
+<p class="p1">.braille-dot {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 18px; height: 18px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.12);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1.5px solid rgba(200,151,58,0.25);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: all 0.4s ease;</p>
+<p class="p1">}</p>
+<p class="p1">.braille-dot.lit {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.5);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>box-shadow: 0 0 16px rgba(200,151,58,0.4);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Mission cards */</p>
+<p class="p1">.mission-row {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 1.5px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: fadeUp 0.8s 1.1s forwards;</p>
+<p class="p1">}</p>
+<p class="p1">.mission-card {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 2rem 1.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-top: 1px solid rgba(200,151,58,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: background 0.3s;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative;</p>
+<p class="p1">}</p>
+<p class="p1">.mission-card:hover { background: rgba(200,151,58,0.04); }</p>
+<p class="p1">.mission-card-num {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.2em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 1rem;</p>
+<p class="p1">}</p>
+<p class="p1">.mission-card-title {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.35rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 0.7rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--cream);</p>
+<p class="p1">}</p>
+<p class="p1">.mission-card-text {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.82rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.55);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Lora', serif;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── PROBLEM / SOLUTION (TAB 2) ─────────────────────── */</p>
+<p class="p1">#tab2 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 7rem 4rem 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-direction: column;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>min-height: auto;</p>
+<p class="p1">}</p>
+<p class="p1">#tab2.active { display: flex; }</p>
+<p class="p2"><br></p>
+<p class="p1">.section-label {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.65rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.3em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-transform: uppercase;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 2rem;</p>
+<p class="p1">}</p>
+<p class="p1">.section-label::after {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>content: ''; flex: 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>height: 1px; background: rgba(200,151,58,0.2);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.problem-hero-text {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: clamp(2.5rem, 5vw, 5rem);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>max-width: 800px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1">}</p>
+<p class="p1">.problem-hero-text em { font-style: italic; color: var(--gold); }</p>
+<p class="p2"><br></p>
+<p class="p1">.stats-row {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: repeat(3, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1">}</p>
+<p class="p1">.stat-block {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 2.5rem 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--deep);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p1">.stat-block::before {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>content: '';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: absolute; top: 0; left: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 3px; height: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: height 0.6s ease;</p>
+<p class="p1">}</p>
+<p class="p1">.stat-block:hover::before { height: 100%; }</p>
+<p class="p1">.stat-num {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 3.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: block;</p>
+<p class="p1">}</p>
+<p class="p1">.stat-label {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.7;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.6);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.two-col {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: 1fr 1fr;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 3rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.problem-list {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>list-style: none;</p>
+<p class="p1">}</p>
+<p class="p1">.problem-list li {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 1.1rem 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-bottom: 1px solid rgba(200,151,58,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.75;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.75);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 1rem; align-items: flex-start;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateX(-15px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: opacity 0.5s ease, transform 0.5s ease;</p>
+<p class="p1">}</p>
+<p class="p1">.problem-list li.visible { opacity: 1; transform: none; }</p>
+<p class="p1">.problem-list li::before {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>content: '●';</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--rust);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 0.55rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-shrink: 0;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">.solution-box {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: linear-gradient(135deg, rgba(200,151,58,0.08), rgba(107,140,110,0.06));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1px solid rgba(200,151,58,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 2px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 2.5rem;</p>
+<p class="p1">}</p>
+<p class="p1">.solution-box h3 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 400;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold-light);</p>
+<p class="p1">}</p>
+<p class="p1">.solution-item {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.87rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.75;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.7);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>opacity: 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateX(15px);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: opacity 0.5s ease, transform 0.5s ease;</p>
+<p class="p1">}</p>
+<p class="p1">.solution-item.visible { opacity: 1; transform: none; }</p>
+<p class="p1">.solution-item-dot {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 7px; height: 7px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--sage);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-top: 0.55rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-shrink: 0;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* What makes it different */</p>
+<p class="p1">.diff-strip {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.06);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-top: 1px solid rgba(200,151,58,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-bottom: 1px solid rgba(200,151,58,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 3rem 0;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow: hidden;</p>
+<p class="p1">}</p>
+<p class="p1">.diff-inner {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>white-space: nowrap;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: marquee 30s linear infinite;</p>
+<p class="p1">}</p>
+<p class="p1">.diff-tag {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.4);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-shrink: 0;</p>
+<p class="p1">}</p>
+<p class="p1">.diff-tag span { color: var(--gold); font-style: normal; margin-right: 4rem; }</p>
+<p class="p2"><br></p>
+<p class="p1">/* Process steps */</p>
+<p class="p1">.process-title {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: clamp(2rem, 4vw, 3.5rem);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 3rem;</p>
+<p class="p1">}</p>
+<p class="p1">.steps-grid {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: repeat(4, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.08);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1">}</p>
+<p class="p1">.step {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: var(--deep);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 2.5rem 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>overflow: hidden;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transition: background 0.35s;</p>
+<p class="p1">}</p>
+<p class="p1">.step:hover { background: rgba(200,151,58,0.05); }</p>
+<p class="p1">.step-arrow {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>top: 50%; right: -1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>transform: translateY(-50%);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 2rem; height: 1px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>z-index: 1;</p>
+<p class="p1">}</p>
+<p class="p1">.step:last-child .step-arrow { display: none; }</p>
+<p class="p1">.step-num {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(200,151,58,0.12);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 1.5rem;</p>
+<p class="p1">}</p>
+<p class="p1">.step-title {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 0.8rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--gold-light);</p>
+<p class="p1">}</p>
+<p class="p1">.step-desc {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.82rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.8;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.55);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Impact */</p>
+<p class="p1">.impact-section {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: linear-gradient(to right, rgba(158,74,42,0.08), rgba(200,151,58,0.06));</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1px solid rgba(200,151,58,0.1);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 3rem 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 4rem;</p>
+<p class="p1">}</p>
+<p class="p1">.impact-section h3 {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 2.2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-weight: 300;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>margin-bottom: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: var(--cream);</p>
+<p class="p1">}</p>
+<p class="p1">.impact-grid {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: grid;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>grid-template-columns: repeat(2, 1fr);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>gap: 1rem;</p>
+<p class="p1">}</p>
+<p class="p1">.impact-item {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; gap: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(0,0,0,0.2);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>align-items: flex-start;</p>
+<p class="p1">}</p>
+<p class="p1">.impact-icon {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>width: 36px; height: 36px;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>background: rgba(200,151,58,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border: 1px solid rgba(200,151,58,0.3);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; align-items: center; justify-content: center;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.9rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>flex-shrink: 0;</p>
+<p class="p1">}</p>
+<p class="p1">.impact-text {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.85rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>line-height: 1.7;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.7);</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Footer */</p>
+<p class="p1">footer {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>position: relative; z-index: 2;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>border-top: 1px solid rgba(200,151,58,0.15);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>padding: 3rem 4rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>display: flex; justify-content: space-between; align-items: center;</p>
+<p class="p1">}</p>
+<p class="p1">.footer-left {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'Cormorant Garamond', serif;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-style: italic;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.4);</p>
+<p class="p1">}</p>
+<p class="p1">.footer-right {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-family: 'DM Mono', monospace;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>font-size: 0.6rem;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>letter-spacing: 0.15em;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>color: rgba(245,237,216,0.25);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>text-align: right;</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── ANIMATIONS ──────────────────────────────────────── */</p>
+<p class="p1">@keyframes fadeUp {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>to { opacity: 1; transform: none; }</p>
+<p class="p1">}</p>
+<p class="p1">@keyframes fadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>to { opacity: 1; }</p>
+<p class="p1">}</p>
+<p class="p1">@keyframes scanLine {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>0% { left: -100%; } 100% { left: 100%; }</p>
+<p class="p1">}</p>
+<p class="p1">@keyframes marquee {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>0% { transform: translateX(0); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>100% { transform: translateX(-50%); }</p>
+<p class="p1">}</p>
+<p class="p1">@keyframes pulseDot {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>0%, 100% { opacity: 0.12; transform: scale(1); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>50% { opacity: 0.5; transform: scale(1.3); }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* Tab switch fade */</p>
+<p class="p1">.tab-fade-enter {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>animation: tabFadeIn 0.5s forwards;</p>
+<p class="p1">}</p>
+<p class="p1">@keyframes tabFadeIn {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>from { opacity: 0; transform: translateY(15px); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>to { opacity: 1; transform: none; }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p1">/* ─── RESPONSIVE ──────────────────────────────────────── */</p>
+<p class="p1">@media (max-width: 900px) {</p>
+<p class="p1"><span class="Apple-converted-space">  </span>nav { padding: 1.2rem 2rem; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.nav-logo { display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#tab1 { padding: 0 2rem; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>#tab2 { padding: 7rem 2rem 4rem; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.two-col { grid-template-columns: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.stats-row { grid-template-columns: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.steps-grid { grid-template-columns: repeat(2, 1fr); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.impact-grid { grid-template-columns: 1fr; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>footer { flex-direction: column; gap: 1rem; text-align: center; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.hero-braille { display: none; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.mission-row { flex-direction: column; }</p>
+<p class="p1">}</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="cursor"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="cursor-ring"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="dot-bg"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="grain"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- NAV --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="nav-logo"&gt;Stories &lt;span&gt;Beyond&lt;/span&gt; Sight&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="nav-tabs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="nav-tab active" data-tab="tab1"&gt;Our Mission&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;button class="nav-tab" data-tab="tab2"&gt;The Work&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/nav&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ─── TAB 1: MISSION ────────────────────────────────── --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="tab1" class="active tab-fade-enter"&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Decorative large braille grid --&gt;</p>
+<p class="p1">&lt;div class="hero-braille" id="brailleGrid"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="hero-eyebrow"&gt;Est. For Every Reader&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;h1 class="hero-headline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Stories&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;em&gt;Beyond&lt;/em&gt;&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Sight.</p>
+<p class="p1">&lt;/h1&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;p class="hero-tagline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>An organisation that aspires to make creative works accessible for all —</p>
+<p class="p1"><span class="Apple-converted-space">  </span>crafting original stories that spark imagination, build confidence,</p>
+<p class="p1"><span class="Apple-converted-space">  </span>and give every visually impaired child the joy of independent reading.</p>
+<p class="p1">&lt;/p&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="mission-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="mission-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-num"&gt;01&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-title"&gt;Original Works&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="mission-card-text"&gt;We create new stories written specifically for enjoyment — not textbooks, not translations. Modern, relatable fiction that feels fresh and alive.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="mission-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-num"&gt;02&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-title"&gt;Braille First&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="mission-card-text"&gt;Every story is transcribed into Braille by certified professionals. Short formats that feel achievable, encouraging young readers to finish and feel proud.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="mission-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-num"&gt;03&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-title"&gt;Free Distribution&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="mission-card-text"&gt;All books are donated directly to blind schools and NGOs at zero cost. Because the joy of reading should never be a privilege.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="mission-card"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-num"&gt;04&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="mission-card-title"&gt;Community Loop&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="mission-card-text"&gt;Feedback from teachers and students shapes every next story. Young writers contribute to accessibility — a replicable model built to scale.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="hero-scroll"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="scroll-line"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Explore the work</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- ─── TAB 2: PROBLEM / SOLUTION ────────────────────── --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;section id="tab2"&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Problem --&gt;</p>
+<p class="p1">&lt;div class="section-label"&gt;The Problem&lt;/div&gt;</p>
+<p class="p1">&lt;h2 class="problem-hero-text"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>Blind students &lt;em&gt;want&lt;/em&gt; to read.&lt;br&gt;They just don't get the chance.</p>
+<p class="p1">&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="stats-row"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="stat-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="stat-num"&gt;285M&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="stat-label"&gt;people globally live with visual impairment, including 19 million children under 14 (NIH).&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="stat-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="stat-num"&gt;&amp;lt;10%&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="stat-label"&gt;of published books are ever converted into accessible formats like Braille.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="stat-block"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="stat-num"&gt;1 in 5&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="stat-label"&gt;preschool-aged children has a vision problem — yet accessible fiction remains almost non-existent.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="two-col"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label"&gt;What's Missing&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;ul class="problem-list" id="problemList"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;Most Braille books available are textbooks, religious texts, or old translations that feel disconnected from young lives.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;Reading is treated as education — never as joy — for blind students.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;Fiction and short stories in Braille are especially rare because they are seen as "non-essential."&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;In many blind schools, students share one Braille book among multiple students, or rely solely on teachers reading aloud.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;li&gt;This creates a reading gap — not because blind students don't want to read, but because they don't have access.&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="section-label"&gt;Our Solution&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="solution-box"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;h3&gt;"Original stories. Professional Braille. Zero cost."&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="solution-item" id="sol1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="solution-item-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;Create original, engaging short stories written specifically for enjoyment — not curriculum, not achievement.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="solution-item" id="sol2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="solution-item-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;Convert each story into Braille via certified external transcription services, ensuring professional Grade 1 or Grade 2 quality.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="solution-item" id="sol3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="solution-item-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;Distribute free of charge to blind schools, libraries, and NGOs — removing every financial barrier.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="solution-item" id="sol4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="solution-item-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span&gt;Stories are not about blindness — they are normal, universal tales every child would love. Inclusion through story.&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Marquee: what makes it different --&gt;</p>
+<p class="p1">&lt;div class="diff-strip"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="diff-inner" id="marqueeInner"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Original&lt;/span&gt; Not Translated ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Creative&lt;/span&gt; Not Educational ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Modern&lt;/span&gt; Not Archive ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Short Format&lt;/span&gt; Builds Confidence ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Free&lt;/span&gt; Always ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;For Joy&lt;/span&gt; Not Tests ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Original&lt;/span&gt; Not Translated ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Creative&lt;/span&gt; Not Educational ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Modern&lt;/span&gt; Not Archive ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Short Format&lt;/span&gt; Builds Confidence ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;Free&lt;/span&gt; Always ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;span class="diff-tag"&gt;&lt;span&gt;For Joy&lt;/span&gt; Not Tests ·&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Process --&gt;</p>
+<p class="p1">&lt;div class="section-label"&gt;How We Do It&lt;/div&gt;</p>
+<p class="p1">&lt;h2 class="process-title"&gt;A simple, repeatable model&lt;br&gt;built to grow.&lt;/h2&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;div class="steps-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-num"&gt;01&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-title"&gt;Content Creation&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="step-desc"&gt;Writers craft original short stories — tales of adventure, friendship, curiosity — that any child would love, regardless of sight.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-num"&gt;02&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-title"&gt;Braille Production&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="step-desc"&gt;Certified Braille transcription partners convert each story into Grade 1 or Grade 2 Braille, tailored to each school's level.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-num"&gt;03&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-title"&gt;Distribution&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="step-desc"&gt;We collaborate with blind schools and NGOs to donate books directly to school libraries and individual students.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-arrow"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="step"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-num"&gt;04&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="step-title"&gt;Feedback Loop&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="step-desc"&gt;Teachers and students share what resonated. Every response shapes our next story — language, length, themes, tone.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;!-- Impact --&gt;</p>
+<p class="p1">&lt;div class="impact-section"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;h3&gt;What changes for students&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="impact-grid"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="impact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="impact-icon"&gt;📖&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="impact-text"&gt;Blind students gain independent access to recreational reading — finishing a book on their own, at their own pace.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="impact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="impact-icon"&gt;✨&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="impact-text"&gt;Improved language skills, imagination, and confidence — the same gifts every sighted child gets from a good story.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="impact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="impact-icon"&gt;🏫&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="impact-text"&gt;A reading culture grows in blind schools beyond academics — books become something to look forward to, not study.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="impact-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="impact-icon"&gt;🌱&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;p class="impact-text"&gt;Normalises the idea that blind students deserve the same variety of literature as sighted students — because they do.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Footer --&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="footer-left"&gt;"Every child deserves a story."&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="footer-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Stories Beyond Sight&lt;br&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>Making imagination accessible</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Custom cursor</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const cursor = document.getElementById('cursor');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const ring = document.getElementById('cursor-ring');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>let mx = 0, my = 0, rx = 0, ry = 0;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.addEventListener('mousemove', e =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>mx = e.clientX; my = e.clientY;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>cursor.style.transform = translate(${mx - 6}px, ${my - 6}px);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function animRing() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>rx += (mx - rx - 18) * 0.12;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ry += (my - ry - 18) * 0.12;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>ring.style.transform = translate(${rx}px, ${ry}px);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>requestAnimationFrame(animRing);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>animRing();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Braille grid (hero decoration)</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const grid = document.getElementById('brailleGrid');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (grid) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const patterns = [1,1,0,1,0,0,1,1,1,0,1,0,0,1,1,0];</p>
+<p class="p1"><span class="Apple-converted-space">      </span>patterns.forEach((lit, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const d = document.createElement('div');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>d.className = 'braille-dot' + (lit ? ' lit' : '');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>if (lit) {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>d.style.animationDelay = (i * 0.3) + 's';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>d.style.animation = pulseDot ${2 + (i % 3)}s ${i * 0.2}s ease-in-out infinite;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>grid.appendChild(d);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Tab switching</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const tabs = document.querySelectorAll('.nav-tab');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const sections = document.querySelectorAll('section');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>tabs.forEach(tab =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>tab.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tabs.forEach(t =&gt; t.classList.remove('active'));</p>
+<p class="p1"><span class="Apple-converted-space">        </span>sections.forEach(s =&gt; { s.classList.remove('active'); s.classList.remove('tab-fade-enter'); });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>tab.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const target = document.getElementById(tab.dataset.tab);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>target.classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>void target.offsetWidth; // reflow</p>
+<p class="p1"><span class="Apple-converted-space">        </span>target.classList.add('tab-fade-enter');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>window.scrollTo({ top: 0, behavior: 'smooth' });</p>
+<p class="p1"><span class="Apple-converted-space">        </span>observeItems();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Scroll-triggered animations</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function observeItems() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const io = new IntersectionObserver((entries) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>entries.forEach((entry, i) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (entry.isIntersecting) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; entry.target.classList.add('visible'), i * 80);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, { threshold: 0.1 });</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelectorAll('.problem-list li, .solution-item').forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>el.classList.remove('visible');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>io.observe(el);</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>observeItems();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Stat counter animation</p>
+<p class="p1"><span class="Apple-converted-space">    </span>function animateCounters() {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelectorAll('.stat-num').forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>el.style.opacity = '0';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>el.style.transform = 'translateY(20px)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>el.style.transition = 'opacity 0.6s, transform 0.6s';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const io = new IntersectionObserver(entries =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>entries.forEach(entry =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>if (entry.isIntersecting) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>entry.target.style.opacity = '1';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>entry.target.style.transform = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">          </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>}, { threshold: 0.5 });</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelectorAll('.stat-num').forEach(el =&gt; io.observe(el));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>animateCounters();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>// ── Cursor hover effects</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('button, a, .mission-card, .step, .stat-block').forEach(el =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>el.addEventListener('mouseenter', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>cursor.style.transform += ' scale(2)';</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ring.style.opacity = '0.3';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>el.addEventListener('mouseleave', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>ring.style.opacity = '1';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
+<p class="p2"><br></p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
