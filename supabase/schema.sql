@@ -1,4 +1,4 @@
--- Stories Beyond Sight — Supabase schema
+-- Between the Dots — Supabase schema
 -- Run this once in the Supabase SQL editor (Project → SQL Editor → New query) before importing schools-seed.csv.
 
 create table if not exists public.schools (

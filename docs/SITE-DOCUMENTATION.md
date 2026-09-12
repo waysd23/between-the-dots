@@ -1,4 +1,4 @@
-# Stories Beyond Sight — Site Documentation & Review
+# Between the Dots — Site Documentation & Review
 
 **Repo:** `between-the-dots-try2` · **File:** single `index.html` (~1,900 lines) · **Last updated:** 2026-09-12
 
@@ -6,24 +6,28 @@ This document exists as a refresh point for the client, for the developer, and f
 
 **2026-09-12 update:** added Tab 5 ("The Map"), a Supabase-backed schools directory (see `data/README.md` and `docs/DEPLOYMENT-SETUP.md`), and converted the contact form to Netlify Forms. Details in section 5 and the note at the end of section 3.
 
+**2026-09-12 update (later the same day):** rebranded the entire site from the placeholder name "Stories Beyond Sight" to **Between the Dots**, matching the client's actual logo and the repo's own name — updated everywhere: title, hero headline, nav, footer, contact email subject lines, story/poem bylines, quote attribution, and the decorative Braille initials (was "SBS," now "BTD"). Also re-themed the entire site from dark (near-black + gold) to **light** (warm cream + deep maroon/burgundy, with a rust/terracotta secondary accent) to match the client-provided logo's palette — see section 6 below for the full color mapping.
+
+**2026-09-12 update (once the client dropped the actual file in):** the real logo (`assets/logo.jpeg` — a circular badge: open book, rising Braille-style dots, "Between the Dots" wordmark, on a cream background) is now used as the browser favicon and in the nav bar, replacing the old decorative 6-dot grid mark. It works as a nav image without any cropping/masking because its own background color is nearly identical to the site's new page background — the square JPEG corners are invisible against the page. On mobile the logo image stays visible and only the adjacent text wordmark hides (previously both the dot-grid mark and text hid together). The footer intentionally was **not** given the raster logo too — it already carries a "Between the Dots" text line and a matching Braille-rendered "BTD" mark, and stacking the photographic logo on top would be redundant next to the nav's.
+
 ---
 
 ## 0. What this site is
 
-A single self-contained `index.html` for **Stories Beyond Sight**, an organisation that writes original short fiction/poetry and distributes it in Braille, free, to blind schools in India. No framework, no build step. There is still no routing — five "tabs" are `<section>` elements toggled by JavaScript on one page. It now has one real backend dependency (Supabase, for the schools map) and one real integration (Netlify Forms, for the contact form) — see section 5. Fonts are loaded from Google Fonts (Cormorant Garamond, DM Mono, Lora); Leaflet.js (via CDN) powers the map.
+A single self-contained `index.html` for **Between the Dots**, an organisation that writes original short fiction/poetry and distributes it in Braille, free, to blind schools in India. No framework, no build step. There is still no routing — five "tabs" are `<section>` elements toggled by JavaScript on one page. It now has one real backend dependency (Supabase, for the schools map) and one real integration (Netlify Forms, for the contact form) — see section 5. Fonts are loaded from Google Fonts (Cormorant Garamond, DM Mono, Lora); Leaflet.js (via CDN) powers the map.
 
 **Global elements present on every tab:**
 - Custom mouse cursor (a dot + trailing ring), with the native cursor hidden (`cursor: none` site-wide).
 - A `<canvas>` background rendering a randomized grid of Braille-style dots as ambient texture; regenerates on window resize.
 - An SVG film-grain overlay for texture.
-- Fixed top nav: logo mark (decorative dot pattern) + a pill-shaped 4-tab switcher (Our Mission / The Work / Partner / Reading Room).
-- Footer: tagline, decorative Braille rendering of "SBS", and a contact line with one email address (`rhea.divekar@gmail.com`).
+- Fixed top nav: the client's real logo image (`assets/logo.jpeg`) + text wordmark, and a pill-shaped 5-tab switcher (Our Mission / The Work / Partner / Reading Room / The Map).
+- Footer: tagline, decorative Braille rendering of "BTD", and a contact line with one email address (`rhea.divekar@gmail.com`).
 
 ---
 
 ## 1. Tab: Our Mission (`#tab1`)
 
-- **Hero**: eyebrow label, large serif headline ("Stories Beyond Sight — reading reimagined"), a mission tagline paragraph, and a decorative side panel that spells "STORIES" in animated, pulsing Braille dots.
+- **Hero**: eyebrow label, large serif headline ("Between the Dots — reading reimagined"), a mission tagline paragraph, and a decorative side panel that spells "BETWEEN" in animated, pulsing Braille dots.
 - **Mission cards** (4-up grid): *Original Works*, *Braille First*, *Free Distribution*, *Community Loop* — each with a decorative dot icon, number, title, and description.
 - **Impact counters** (4-up): "6 Original Stories", "14 Schools in Network", "1,200+ Students Reached" (labeled as a year-one *target*), "100% Free, Always" — these animate a count-up when scrolled into view.
 - A decorative, non-functional "Explore the work" scroll cue at the bottom (there is nothing to scroll to below it — it's cosmetic).
@@ -59,7 +63,7 @@ A single self-contained `index.html` for **Stories Beyond Sight**, an organisati
 ## 5. Tab: The Map (`#tab5`) — added 2026-09-12
 
 - **Hero + disclaimer**: framed explicitly as a public-awareness directory, not a confirmed partner network — see `data/README.md` for why that distinction matters.
-- **Map**: Leaflet.js with no raster basemap at all — just a plain India outline (`data/india-outline.geojson`, public-domain Natural Earth data, simplified locally) so nothing renders except the country shape, the school dots, and city names for places that actually have a school. (Two earlier approaches were tried and dropped: CartoDB's dark basemap now gates behind a paid API key, and standard OpenStreetMap tiles bake in every town/road/border regardless of relevance — real noise for a directory map like this.) City labels only appear once zoomed in past a threshold, to avoid ~145 names competing for space at the country-wide view. One blinking gold dot per school, clustered when zoomed out (Maharashtra alone has 47 entries). Click a dot (or a cluster to zoom in) to select it.
+- **Map**: Leaflet.js with no raster basemap at all — just India's 36 state/UT boundaries (`data/india-states.geojson`, public-domain Natural Earth data, simplified locally), drawn with a dotted stroke so internal borders read as texture rather than a real administrative map. (Two earlier approaches were tried and dropped: CartoDB's dark basemap now gates behind a paid API key, and standard OpenStreetMap tiles bake in every town/road/border regardless of relevance — real noise for a directory map like this.) Ambient state-name labels sit in their own map pane behind the markers, screen-space collision-thinned so they don't crowd each other. City labels only appear once zoomed in past a threshold, and only for cities with a school, gated the same way. Every dot is color-coded by operator type — Government (maroon), NGO-run (sage), Private/Missionary (terracotta), or Unspecified (neutral) when the research couldn't confidently tell — with a legend showing live counts per category. Clusters render as a donut/pie icon (CSS conic-gradient) showing the proportion of each type inside, not just a count. Click a dot (or a cluster to zoom in) to select it.
 - **Detail panel**: shows name, type, city/state, address (or a note that only the locality is known), a location-precision label (none of the data is street-exact — see caveats below), and a link to the source the record was researched from.
 - **State filter**: a dropdown narrows the map + marker count to one state/UT at a time.
 - **Data source**: `data/schools-india.json` — **221 real, individually-sourced schools** for blind/visually-impaired children, researched via web search across every Indian state and UT (government special-education directories, NGO networks, missionary-school histories, and one successfully-extracted official Odisha government PDF). Full provenance, caveats, and known coverage gaps are in `data/README.md` — read it before presenting these numbers externally.
@@ -71,6 +75,7 @@ A single self-contained `index.html` for **Stories Beyond Sight**, an organisati
 - Story, poem, FAQ, tier, and counter content on tabs 1–4 is still hardcoded in the HTML file — only the schools map (tab 5) now has a real backend. Adding a story/poem/FAQ still means editing code.
 - No analytics, no tests, no linting/build tooling.
 - New dependencies, all loaded via CDN (no build step introduced): Leaflet.js + Leaflet.markercluster for the map.
+- **Color palette (light theme, since 2026-09-12):** the CSS custom properties keep their *original names* from the dark theme (`--ink`, `--deep`, `--cream`, `--gold`, `--gold-light`, `--rust`) but now hold different, in some cases confusingly-named, values — `--gold` is now a deep maroon (`#6b1937`), not gold. This was a deliberate tradeoff (renaming every var() usage sitewide was higher-risk than swapping values), but it's a real maintainability wart worth a cleanup pass eventually. Current mapping: `--ink` (page background) = `#faf3e3` warm cream; `--deep` (card/surface background) = `#f0e3c7` slightly deeper tan; `--cream` (body text) = `#2b141b` dark maroon-black ink; `--gold` (primary accent) = `#6b1937` deep maroon; `--gold-light` (hover/lift variant) = `#9c2d54`; `--rust` (secondary accent / error state) = `#a83c2d`; `--sage` (voice-reader / NGO map category) unchanged at `#6b8c6e`. The map's "Private/Missionary" category deliberately uses a fourth, separate terracotta tone (`#c76a3a`) rather than reusing `--rust`, so all four map categories stay visually distinct.
 
 ---
 
@@ -102,7 +107,7 @@ Ranked roughly by priority.
 
 7. **Every CTA on the site funnels to one personal Gmail address**, with no organisational domain, phone number, physical address, or social presence. This is a plausible trust gap for institutional/CSR partners doing due diligence before writing a cheque.
 
-8. **The embedded YouTube video ID is hardcoded** with a leftover comment saying "replace VIDEO_ID" — worth confirming this is actually the org's own rights-cleared content and not a placeholder left over from prototyping.
+8. **The embedded YouTube video is dead.** Confirmed live on 2026-09-12 — it now renders YouTube's own "Video unavailable" placeholder. The hardcoded ID also carries a leftover comment saying "replace VIDEO_ID," suggesting it may have been a placeholder left over from prototyping rather than the org's own rights-cleared content. Needs a real video or the section removed.
 
 9. **No privacy policy or terms**, despite the contact form collecting name, email, organisation, and message.
 
@@ -119,6 +124,10 @@ Ranked roughly by priority.
 14. **The Web Speech API "Listen" feature is a nice engagement touch, but its voice quality is entirely OS/browser-dependent** and isn't the real accessible-reading experience the org provides (physical Braille). Worth labeling it clearly as a demo/bonus feature so it doesn't get conflated with the org's actual accessibility work in a client or funder's mind.
 
 15. **No automated tests**, unsurprising for a static prototype, but worth planning for once the contact form and any future donation flow go live.
+
+16. ~~**The client's actual logo hasn't been embedded on the site yet.**~~ **Fixed 2026-09-12** — `assets/logo.jpeg` is now the favicon and the nav mark.
+
+17. **CSS variable names no longer match what they hold**, post-retheme. `--gold` is a deep maroon (`#6b1937`), `--ink` is a light cream, `--cream` is a dark ink color — kept as-is to avoid the higher risk of a sitewide var-rename, but this is a real trap for whoever touches this CSS next without reading this doc first. Worth a proper rename pass (`--gold`→`--maroon`, `--ink`→`--bg`, `--cream`→`--ink-text`, etc.) once things settle.
 
 ---
 

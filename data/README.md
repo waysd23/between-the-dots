@@ -12,7 +12,7 @@ The 36 state/UT boundaries drawn under the map, rendered with a dotted stroke (n
 
 ## Important caveats before this goes live
 
-1. **None of these schools have a confirmed relationship with Stories Beyond Sight.** This is a public-awareness directory of known institutions, not a partner network. Do not label it "our schools" or "our network" on the site — that would misrepresent an affiliation that hasn't been established. Frame it as something like "Schools for the Blind Across India" or similar.
+1. **None of these schools have a confirmed relationship with Between the Dots.** This is a public-awareness directory of known institutions, not a partner network. Do not label it "our schools" or "our network" on the site — that would misrepresent an affiliation that hasn't been established. Frame it as something like "Schools for the Blind Across India" or similar.
 2. **Coordinates are city/district-level centroids, not exact campus locations.** No public source gave rooftop-accurate lat/lng for any entry. If the map needs to visually distinguish schools within the same city, these coordinates will need real geocoding against the street address first (e.g. via a geocoding API), or the map should acknowledge approximate placement.
 3. **This is not exhaustive.** It reflects what's publicly documented and search-indexed, not every school that exists — but two of the biggest known gaps have already been chased down:
    - Odisha's official government special-education PDF (102 statewide special schools, ssepd.odisha.gov.in) **was successfully extracted** — it raised Odisha's count from 4 to 32 confirmed VI-specific institutions.
