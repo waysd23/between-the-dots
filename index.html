@@ -7,6 +7,10 @@
   <meta name="description" content="An organisation making creative works accessible for the visually impaired community — fostering imagination through original Braille literature."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css"/>
+  <script src="config.js"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -242,6 +246,10 @@
     .form-textarea { resize: vertical; min-height: 100px; }
     .form-submit { background: var(--gold); color: var(--ink); border: none; font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; padding: 1rem 2rem; cursor: none; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 0.8rem; }
     .form-submit:hover { background: var(--gold-light); }
+    .form-submit:disabled { opacity: 0.5; cursor: none; }
+    .form-feedback { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; text-align: center; min-height: 1.2rem; }
+    .form-feedback.ok { color: var(--sage); }
+    .form-feedback.err { color: var(--rust); }
 
     .quote-strip { border-top: 1px solid rgba(200,151,58,0.1); border-bottom: 1px solid rgba(200,151,58,0.1); padding: 4rem 0; margin-bottom: 5rem; text-align: center; }
     .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-style: italic; font-weight: 300; color: rgba(245,237,216,0.7); max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.5; }
@@ -404,6 +412,69 @@
     .braille-fact-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 300; margin-bottom: 0.5rem; }
     .braille-fact-text { font-size: 0.8rem; line-height: 1.75; color: rgba(245,237,216,0.5); font-style: italic; }
 
+    /* ═══════════════════════════════════════════
+       TAB 5 — THE MAP
+    ═══════════════════════════════════════════ */
+    #tab5 { padding: 7rem 4rem 4rem; flex-direction: column; min-height: auto; }
+    #tab5.active { display: flex; }
+
+    .map-hero { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 6.5rem); font-weight: 300; line-height: 0.95; margin-bottom: 1.2rem; }
+    .map-hero em { font-style: italic; color: var(--gold); }
+    .map-hero-sub { font-size: 0.95rem; color: rgba(245,237,216,0.5); font-style: italic; line-height: 1.85; max-width: 640px; margin-bottom: 1.5rem; }
+    .map-disclaimer { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.05em; color: rgba(245,237,216,0.3); line-height: 1.8; max-width: 640px; margin-bottom: 2.5rem; padding: 0.9rem 1.2rem; border-left: 2px solid rgba(200,151,58,0.25); background: rgba(200,151,58,0.03); }
+
+    .map-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+    .map-state-select { background: rgba(255,255,255,0.03); border: 1px solid rgba(200,151,58,0.2); color: var(--cream); font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.05em; padding: 0.6rem 1rem; outline: none; cursor: none; -webkit-appearance: none; appearance: none; }
+    .map-state-select option { background: #1a1208; }
+    .map-count { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,237,216,0.35); }
+    .map-count b { color: var(--gold); font-size: 0.85rem; }
+    .map-status { margin-left: auto; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(245,237,216,0.3); display: flex; align-items: center; gap: 0.5rem; }
+    .map-status-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(107,140,110,0.5); }
+    .map-status-dot.live { background: var(--sage); box-shadow: 0 0 6px rgba(107,140,110,0.7); }
+
+    .map-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.4rem; width: 100%; padding-top: 0.9rem; margin-top: 0.2rem; border-top: 1px solid rgba(200,151,58,0.08); }
+    .map-legend-item { display: flex; align-items: center; gap: 0.5rem; font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; color: rgba(245,237,216,0.45); }
+    .map-legend-item i { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+    .map-legend-item b { color: rgba(245,237,216,0.7); font-weight: 500; }
+
+    .map-layout { display: grid; grid-template-columns: 1fr 340px; gap: 1px; background: rgba(200,151,58,0.1); margin-bottom: 3rem; min-height: 560px; }
+    #schoolMap { width: 100%; height: 560px; background: #0a0803; }
+    .map-panel { background: var(--deep); padding: 1.8rem; display: flex; flex-direction: column; max-height: 560px; overflow-y: auto; }
+    .map-panel-empty { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; color: rgba(245,237,216,0.25); font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; line-height: 2; }
+    .map-panel-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--tag-c, var(--gold)); background: var(--tag-bg, rgba(200,151,58,0.08)); border: 1px solid var(--tag-bd, rgba(200,151,58,0.2)); padding: 0.3rem 0.7rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1.2rem; align-self: flex-start; }
+    .map-panel-tag i { width: 7px; height: 7px; border-radius: 50%; background: var(--tag-c, var(--gold)); flex-shrink: 0; }
+    .map-panel-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--cream); margin-bottom: 0.4rem; line-height: 1.2; }
+    .map-panel-locality { font-family: 'DM Mono', monospace; font-size: 0.65rem; letter-spacing: 0.08em; color: var(--gold-light); margin-bottom: 1.3rem; }
+    .map-panel-row { display: flex; flex-direction: column; gap: 0.3rem; padding: 0.9rem 0; border-top: 1px solid rgba(200,151,58,0.08); }
+    .map-panel-row-label { font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,237,216,0.3); }
+    .map-panel-row-value { font-size: 0.84rem; line-height: 1.6; color: rgba(245,237,216,0.7); }
+    .map-panel-row-value a { color: var(--gold-light); }
+    .map-panel-note { margin-top: 1rem; padding: 0.9rem 1rem; background: rgba(158,74,42,0.08); border: 1px solid rgba(158,74,42,0.2); font-size: 0.76rem; line-height: 1.65; color: rgba(245,237,216,0.55); font-style: italic; }
+
+    .school-marker-hit { display: flex; align-items: center; justify-content: center; width: 26px; height: 26px; cursor: none; }
+    .school-marker { display: block; width: 12px; height: 12px; border-radius: 50%; background: var(--dc, var(--gold)); animation: schoolBlink 2.6s ease-in-out infinite; }
+    .school-marker.selected { background: var(--dc, var(--gold-light)); animation: none; box-shadow: 0 0 14px 4px var(--dg, rgba(232,184,90,0.7)); }
+    @keyframes schoolBlink { 0%,100% { box-shadow: 0 0 0 0 var(--dg, rgba(200,151,58,0.55)); } 50% { box-shadow: 0 0 0 7px transparent; } }
+
+    .leaflet-container { background: #0a0803 !important; font-family: 'DM Mono', monospace !important; }
+    .city-label { pointer-events: none; }
+    .city-label span { display: inline-block; transform: translate(9px, -5px); white-space: nowrap; font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.04em; color: rgba(245,237,216,0.55); text-shadow: 0 0 5px rgba(10,8,3,0.95), 0 0 5px rgba(10,8,3,0.95); }
+    .state-label { pointer-events: none; }
+    .state-label span { display: inline-block; transform: translate(-50%, -50%); white-space: nowrap; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(200,151,58,0.3); }
+    .cluster-pie { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 1px rgba(200,151,58,0.35), 0 0 10px rgba(0,0,0,0.4); }
+    .cluster-pie-hole { width: 21px; height: 21px; border-radius: 50%; background: #14100a; display: flex; align-items: center; justify-content: center; }
+    .cluster-pie-hole span { font-family: 'DM Mono', monospace; font-size: 0.62rem; font-weight: 500; color: var(--cream); }
+    .leaflet-popup-content-wrapper { background: var(--deep); color: var(--cream); border: 1px solid rgba(200,151,58,0.3); border-radius: 0; }
+    .leaflet-popup-tip { background: var(--deep); border: 1px solid rgba(200,151,58,0.3); }
+    .leaflet-popup-content { font-family: 'Lora', serif; font-size: 0.82rem; margin: 0.8rem 1rem; }
+    .leaflet-popup-content b { color: var(--gold-light); font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; }
+
+    @media (max-width: 960px) {
+      .map-layout { grid-template-columns: 1fr; }
+      #schoolMap { height: 420px; }
+      .map-panel { max-height: 300px; }
+    }
+
     /* FOOTER */
     footer { position: relative; z-index: 2; border-top: 1px solid rgba(200,151,58,0.12); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-left { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: rgba(245,237,216,0.35); }
@@ -463,6 +534,7 @@
     <button class="nav-tab" data-tab="tab2">The Work</button>
     <button class="nav-tab" data-tab="tab3">Partner</button>
     <button class="nav-tab" data-tab="tab4">Reading Room</button>
+    <button class="nav-tab" data-tab="tab5">The Map</button>
   </div>
 </nav>
 
@@ -779,15 +851,17 @@
         <p>Or reach us directly at:</p>
         <div class="contact-email-display">rhea.divekar@gmail.com</div>
       </div>
-      <div class="contact-form">
+      <form class="contact-form" id="contactForm" name="contact-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return submitContactForm(event)">
+        <input type="hidden" name="form-name" value="contact-inquiry" />
+        <p style="position:absolute; left:-9999px;"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" id="fname" placeholder="Full name" /></div>
-          <div class="form-group"><label class="form-label">Organisation</label><input class="form-input" type="text" id="forg" placeholder="Optional" /></div>
+          <div class="form-group"><label class="form-label">Your Name</label><input class="form-input" type="text" id="fname" name="name" placeholder="Full name" required /></div>
+          <div class="form-group"><label class="form-label">Organisation</label><input class="form-input" type="text" id="forg" name="organisation" placeholder="Optional" /></div>
         </div>
-        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="femail" placeholder="your@email.com" /></div>
+        <div class="form-group"><label class="form-label">Email Address</label><input class="form-input" type="email" id="femail" name="email" placeholder="your@email.com" required /></div>
         <div class="form-group">
           <label class="form-label">I am interested in</label>
-          <select class="form-select" id="ftype">
+          <select class="form-select" id="ftype" name="interest">
             <option value="">Select an option</option>
             <option value="Seed Sponsorship">Seed Sponsorship — Individual</option>
             <option value="Chapter Partnership">Chapter Partnership — Organisation / CSR</option>
@@ -798,9 +872,10 @@
             <option value="General Enquiry">General Enquiry</option>
           </select>
         </div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" id="fmessage" placeholder="Tell us a little about yourself and what you have in mind…"></textarea></div>
-        <button class="form-submit" onclick="sendEmail()"><span>⠿</span> Send Message</button>
-      </div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" id="fmessage" name="message" placeholder="Tell us a little about yourself and what you have in mind…"></textarea></div>
+        <button class="form-submit" type="submit" id="formSubmitBtn"><span>⠿</span> Send Message</button>
+        <div class="form-feedback" id="formFeedback" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </div>
 
@@ -1083,6 +1158,32 @@ paragraphs ago.</div>
 
 </section>
 
+<!-- ═══════════════════════════════════════════
+     TAB 5: THE MAP
+═══════════════════════════════════════════ -->
+<section id="tab5">
+  <div class="section-label"><span class="bi">⠿</span> Where the Need Is</div>
+  <h2 class="map-hero">Every dot,<br><em>a classroom.</em></h2>
+  <p class="map-hero-sub">A working directory of known schools for blind and visually impaired children across India — researched from public government and NGO records. Click a dot to see what's there.</p>
+  <p class="map-disclaimer">⠿ This is a public-awareness map, not a list of confirmed Stories Beyond Sight partners or donation recipients. Coordinates are city/district-level, not exact campus locations — see the school's source link for verification.</p>
+
+  <div class="map-toolbar">
+    <select class="map-state-select" id="mapStateFilter">
+      <option value="">All States &amp; UTs</option>
+    </select>
+    <div class="map-count">Showing <b id="mapCount">0</b> schools</div>
+    <div class="map-status"><span class="map-status-dot" id="mapStatusDot"></span><span id="mapStatusText">Loading…</span></div>
+    <div class="map-legend" id="mapLegend"></div>
+  </div>
+
+  <div class="map-layout">
+    <div id="schoolMap"></div>
+    <div class="map-panel" id="mapPanel">
+      <div class="map-panel-empty">⠿<br>Select a school<br>on the map</div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-left">"Every child deserves a story."</div>
@@ -1094,6 +1195,8 @@ paragraphs ago.</div>
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
 <script>
 /* ═══════════════════════════════════════════
    BRAILLE DATA
@@ -1264,6 +1367,7 @@ tabs.forEach(tab => {
     target.classList.add('tab-fade-enter');
     window.scrollTo({top:0, behavior:'smooth'});
     observeItems();
+    if (tab.dataset.tab === 'tab5') initSchoolMap();
   });
 });
 
@@ -1396,20 +1500,54 @@ function toggleFaq(el) {
 }
 
 /* ═══════════════════════════════════════════
-   EMAIL FORM
+   CONTACT FORM — submits via Netlify Forms
 ═══════════════════════════════════════════ */
-function sendEmail() {
+function mailtoFallback() {
   const name  = document.getElementById('fname').value.trim();
   const org   = document.getElementById('forg').value.trim();
   const email = document.getElementById('femail').value.trim();
   const type  = document.getElementById('ftype').value;
   const msg   = document.getElementById('fmessage').value.trim();
-  if(!name||!email){ alert('Please enter your name and email address.'); return; }
   const subject = encodeURIComponent((type||'Enquiry') + ' — Stories Beyond Sight');
   const body    = encodeURIComponent(
     `Hello,\n\nName: ${name}\n${org?'Organisation: '+org+'\n':''}Email: ${email}\nInterest: ${type||'Not specified'}\n\nMessage:\n${msg||'(No message provided)'}\n\nThank you.`
   );
   window.location.href = `mailto:rhea.divekar@gmail.com?subject=${subject}&body=${body}`;
+}
+
+function submitContactForm(event) {
+  event.preventDefault();
+  const form = document.getElementById('contactForm');
+  const btn  = document.getElementById('formSubmitBtn');
+  const feedback = document.getElementById('formFeedback');
+  const name  = document.getElementById('fname').value.trim();
+  const email = document.getElementById('femail').value.trim();
+  if (!name || !email) {
+    feedback.textContent = 'Please enter your name and email address.';
+    feedback.className = 'form-feedback err';
+    return false;
+  }
+  btn.disabled = true;
+  feedback.textContent = 'Sending…';
+  feedback.className = 'form-feedback';
+
+  const body = new URLSearchParams(new FormData(form)).toString();
+  fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body })
+    .then(res => {
+      if (!res.ok) throw new Error('Form submission failed: ' + res.status);
+      feedback.textContent = '✓ Message sent — we\'ll respond within 48 hours.';
+      feedback.className = 'form-feedback ok';
+      form.reset();
+      btn.disabled = false;
+    })
+    .catch(() => {
+      // Not deployed on Netlify yet, or the request failed — fall back to opening a pre-filled email.
+      feedback.textContent = 'Opening your email client instead…';
+      feedback.className = 'form-feedback';
+      btn.disabled = false;
+      mailtoFallback();
+    });
+  return false;
 }
 
 /* ═══════════════════════════════════════════
@@ -1635,6 +1773,354 @@ document.querySelectorAll('button,a,.mission-card,.step,.stat-block,.why-card,.t
   el.addEventListener('mouseenter', () => { ring.style.opacity='0.4'; });
   el.addEventListener('mouseleave', () => { ring.style.opacity='1'; });
 });
+
+/* ═══════════════════════════════════════════
+   THE MAP — SCHOOLS ACROSS INDIA
+   Reads from Supabase (config.js) when configured; otherwise falls back
+   to the bundled data/schools-india.json so the map always works.
+═══════════════════════════════════════════ */
+let schoolMap = null;
+let schoolMarkersLayer = null;
+let cityLabelsLayer = null;
+let stateLabelsLayer = null;
+let allSchools = [];
+let markerById = {};
+let schoolById = {};
+
+/* Category classification is a best-effort read of the free-text `type` field
+   researched for each school — not a verified operator registry. Anything that
+   doesn't clearly say "government" or "NGO" is bucketed as Unspecified rather
+   than guessed into Private, since several types (e.g. a bare "Integrated
+   School — VI Section") don't actually tell us who runs it. */
+const CATEGORY_STYLE = {
+  Government: { label: 'Government', color: '#c8973a', glow: 'rgba(200,151,58,0.55)', bg: 'rgba(200,151,58,0.1)', border: 'rgba(200,151,58,0.35)' },
+  NGO:        { label: 'NGO-run',    color: '#6b8c6e', glow: 'rgba(107,140,110,0.55)', bg: 'rgba(107,140,110,0.1)', border: 'rgba(107,140,110,0.35)' },
+  Private:    { label: 'Private / Missionary', color: '#9e4a2a', glow: 'rgba(158,74,42,0.55)', bg: 'rgba(158,74,42,0.1)', border: 'rgba(158,74,42,0.35)' },
+  Unspecified:{ label: 'Unspecified', color: 'rgba(245,237,216,0.55)', glow: 'rgba(245,237,216,0.3)', bg: 'rgba(245,237,216,0.06)', border: 'rgba(245,237,216,0.2)' },
+};
+const CATEGORY_ORDER = ['Government', 'NGO', 'Private', 'Unspecified'];
+
+function classifySchoolType(type) {
+  const t = (type || '').toLowerCase();
+  if (t.includes('government')) return 'Government';
+  if (t.includes('ngo')) return 'NGO';
+  if (t.includes('missionary') || t.includes('christian') || t.includes('private')) return 'Private';
+  return 'Unspecified';
+}
+
+function normalizeSchool(r) {
+  const type = r.type || '';
+  return {
+    id: r.id,
+    name: r.name,
+    state: r.state,
+    city: r.city || '',
+    address: r.address || '',
+    lat: Number(r.lat),
+    lng: Number(r.lng),
+    geoPrecision: r.geoPrecision || r.geo_precision || 'city',
+    type,
+    category: classifySchoolType(type),
+    sourceUrl: r.sourceUrl || r.source_url || '',
+    note: r.note || '',
+  };
+}
+
+function setMapStatus(live) {
+  const dot = document.getElementById('mapStatusDot');
+  const text = document.getElementById('mapStatusText');
+  if (!dot || !text) return;
+  if (live) { dot.classList.add('live'); text.textContent = 'Live from database'; }
+  else { dot.classList.remove('live'); text.textContent = 'Local dataset'; }
+}
+
+async function loadSchools() {
+  const cfg = window.SBS_CONFIG || {};
+  if (cfg.SUPABASE_URL && cfg.SUPABASE_ANON_KEY) {
+    try {
+      const res = await fetch(`${cfg.SUPABASE_URL}/rest/v1/schools?select=*`, {
+        headers: { apikey: cfg.SUPABASE_ANON_KEY, Authorization: `Bearer ${cfg.SUPABASE_ANON_KEY}` },
+      });
+      if (!res.ok) throw new Error('Supabase request failed: ' + res.status);
+      const data = await res.json();
+      setMapStatus(true);
+      return data.map(normalizeSchool);
+    } catch (err) {
+      console.warn('Supabase fetch failed, falling back to local data:', err);
+    }
+  }
+  const res = await fetch('data/schools-india.json');
+  const data = await res.json();
+  setMapStatus(false);
+  return data.map(normalizeSchool);
+}
+
+function makeSchoolIcon(selected, category) {
+  const style = CATEGORY_STYLE[category] || CATEGORY_STYLE.Unspecified;
+  return L.divIcon({
+    className: '',
+    html: `<span class="school-marker-hit"><span class="school-marker${selected ? ' selected' : ''}" style="--dc:${style.color};--dg:${style.glow}"></span></span>`,
+    iconSize: [26, 26],
+    iconAnchor: [13, 13],
+  });
+}
+
+function showSchoolDetail(school) {
+  const panel = document.getElementById('mapPanel');
+  const style = CATEGORY_STYLE[school.category] || CATEGORY_STYLE.Unspecified;
+  const locality = [school.city, school.state].filter(Boolean).join(', ');
+  const typeLower = (school.type || '').trim().toLowerCase();
+  const labelLower = style.label.trim().toLowerCase();
+  let tagText;
+  if (!school.type || typeLower === labelLower) tagText = style.label || 'School';
+  else if (typeLower.startsWith(labelLower)) tagText = school.type; // already leads with the label — e.g. "NGO-run (girls, residential)"
+  else tagText = `${style.label} · ${school.type}`;
+  panel.innerHTML = `
+    <div class="map-panel-tag" style="--tag-c:${style.color};--tag-bg:${style.bg};--tag-bd:${style.border}"><i></i>${tagText}</div>
+    <div class="map-panel-name">${school.name}</div>
+    <div class="map-panel-locality">⠿ ${locality}</div>
+    <div class="map-panel-row">
+      <div class="map-panel-row-label">Address</div>
+      <div class="map-panel-row-value">${school.address || 'Not publicly listed — locality shown is approximate.'}</div>
+    </div>
+    <div class="map-panel-row">
+      <div class="map-panel-row-label">Location Precision</div>
+      <div class="map-panel-row-value">${school.geoPrecision === 'exact' ? 'Exact campus location' : 'Approximate — city/district level'}</div>
+    </div>
+    ${school.sourceUrl ? `<div class="map-panel-row"><div class="map-panel-row-label">Source</div><div class="map-panel-row-value"><a href="${school.sourceUrl}" target="_blank" rel="noopener">View source ↗</a></div></div>` : ''}
+    ${school.note ? `<div class="map-panel-note">${school.note}</div>` : ''}
+  `;
+  Object.values(markerById).forEach(m => m.setIcon(makeSchoolIcon(false, m.options.schoolCategory)));
+  const marker = markerById[school.id];
+  if (marker) marker.setIcon(makeSchoolIcon(true, school.category));
+}
+
+function renderSchoolMarkers(schools) {
+  schoolMarkersLayer.clearLayers();
+  markerById = {};
+  schoolById = {};
+  const markers = schools.filter(s => isFinite(s.lat) && isFinite(s.lng)).map(school => {
+    const marker = L.marker([school.lat, school.lng], {
+      icon: makeSchoolIcon(false, school.category),
+      schoolCategory: school.category,
+    });
+    marker.bindTooltip(`<b>${school.name}</b><br>${school.city ? school.city + ', ' : ''}${school.state}`, { direction: 'top', offset: [0, -6] });
+    marker.on('click', () => showSchoolDetail(school));
+    markerById[school.id] = marker;
+    schoolById[school.id] = school;
+    return marker;
+  });
+  schoolMarkersLayer.addLayers(markers);
+
+  const countEl = document.getElementById('mapCount');
+  if (countEl) countEl.textContent = schools.length;
+  renderLegend(schools);
+  // Cluster membership needs a moment to settle before we can ask which
+  // markers render standalone vs. folded into a cluster bubble.
+  setTimeout(updateCityLabelVisibility, 50);
+}
+
+const LABEL_MIN_ZOOM = 7;
+const LABEL_MIN_SPACING_PX = 52;
+
+/* A city only gets a text label when (a) the map is zoomed in past a
+   country-wide view, AND (b) at least one of its schools is currently
+   rendered as its own dot rather than folded into a cluster bubble — so
+   labels track exactly what's visually distinct on screen instead of
+   piling up independently of it. A screen-space pass then drops any label
+   that would land within LABEL_MIN_SPACING_PX of one already placed, so
+   even unclustered neighbors never overlap each other. */
+function updateCityLabelVisibility() {
+  if (!schoolMap || !schoolMarkersLayer) return;
+  if (cityLabelsLayer) { schoolMap.removeLayer(cityLabelsLayer); cityLabelsLayer = null; }
+  if (schoolMap.getZoom() < LABEL_MIN_ZOOM) return;
+
+  const seenCity = new Set();
+  const candidates = [];
+  Object.keys(markerById).forEach(id => {
+    const marker = markerById[id];
+    if (schoolMarkersLayer.getVisibleParent(marker) !== marker) return; // still inside a cluster bubble
+    const school = schoolById[id];
+    if (!school || !school.city) return;
+    const key = (school.city + '|' + school.state).toLowerCase();
+    if (seenCity.has(key)) return;
+    seenCity.add(key);
+    candidates.push(school);
+  });
+
+  const placedPoints = [];
+  const labelMarkers = [];
+  candidates.forEach(school => {
+    const pt = schoolMap.latLngToContainerPoint([school.lat, school.lng]);
+    const tooClose = placedPoints.some(p => Math.hypot(p.x - pt.x, p.y - pt.y) < LABEL_MIN_SPACING_PX);
+    if (tooClose) return;
+    placedPoints.push(pt);
+    labelMarkers.push(L.marker([school.lat, school.lng], {
+      icon: L.divIcon({ className: 'city-label', html: `<span>${school.city}</span>`, iconSize: [0, 0] }),
+      interactive: false,
+      keyboard: false,
+    }));
+  });
+
+  cityLabelsLayer = L.layerGroup(labelMarkers).addTo(schoolMap);
+}
+
+/* State names sit further back than city labels — always attempted, at any
+   zoom, but the same screen-space collision pass drops whichever ones would
+   crowd each other (worst in the Northeast and around Delhi/NCR), so it
+   reads as ambient background text rather than a cluttered admin map. */
+let allStateLabelPoints = [];
+function renderStateLabels(stateFeatures) {
+  allStateLabelPoints = stateFeatures
+    .map(f => ({ name: f.properties.name, lat: f.properties.lat, lng: f.properties.lon }))
+    .filter(s => isFinite(s.lat) && isFinite(s.lng));
+  updateStateLabelVisibility();
+}
+
+const STATE_LABEL_MIN_SPACING_PX = 60;
+function updateStateLabelVisibility() {
+  if (!schoolMap || !allStateLabelPoints.length) return;
+  if (stateLabelsLayer) { schoolMap.removeLayer(stateLabelsLayer); stateLabelsLayer = null; }
+
+  const placedPoints = [];
+  const labelMarkers = [];
+  allStateLabelPoints.forEach(state => {
+    const pt = schoolMap.latLngToContainerPoint([state.lat, state.lng]);
+    const tooClose = placedPoints.some(p => Math.hypot(p.x - pt.x, p.y - pt.y) < STATE_LABEL_MIN_SPACING_PX);
+    if (tooClose) return;
+    placedPoints.push(pt);
+    labelMarkers.push(L.marker([state.lat, state.lng], {
+      icon: L.divIcon({ className: 'state-label', html: `<span>${state.name}</span>`, iconSize: [0, 0] }),
+      interactive: false,
+      keyboard: false,
+      pane: 'stateLabelPane',
+    }));
+  });
+
+  stateLabelsLayer = L.layerGroup(labelMarkers).addTo(schoolMap);
+}
+
+function renderLegend(schools) {
+  const legend = document.getElementById('mapLegend');
+  if (!legend) return;
+  const counts = {};
+  schools.forEach(s => { counts[s.category] = (counts[s.category] || 0) + 1; });
+  legend.innerHTML = CATEGORY_ORDER
+    .filter(cat => counts[cat])
+    .map(cat => {
+      const style = CATEGORY_STYLE[cat];
+      return `<span class="map-legend-item"><i style="background:${style.color}"></i>${style.label} <b>${counts[cat]}</b></span>`;
+    })
+    .join('');
+}
+
+/* A cluster of one school type renders as a plain solid dot; a mixed
+   cluster renders as a small donut chart (CSS conic-gradient) showing the
+   proportion of each type inside it, so the mix is visible before you
+   ever zoom in or click. */
+function makeClusterIcon(cluster) {
+  const children = cluster.getAllChildMarkers();
+  const counts = {};
+  children.forEach(m => {
+    const cat = m.options.schoolCategory || 'Unspecified';
+    counts[cat] = (counts[cat] || 0) + 1;
+  });
+  const total = children.length;
+  const presentCategories = CATEGORY_ORDER.filter(cat => counts[cat]);
+
+  let background;
+  if (presentCategories.length <= 1) {
+    const only = presentCategories[0] || 'Unspecified';
+    background = CATEGORY_STYLE[only].color;
+  } else {
+    let cursor = 0;
+    const stops = presentCategories.map(cat => {
+      const pct = (counts[cat] / total) * 100;
+      const stop = `${CATEGORY_STYLE[cat].color} ${cursor}% ${cursor + pct}%`;
+      cursor += pct;
+      return stop;
+    });
+    background = `conic-gradient(${stops.join(', ')})`;
+  }
+
+  return L.divIcon({
+    html: `<div class="cluster-pie" style="background:${background}"><div class="cluster-pie-hole"><span>${total}</span></div></div>`,
+    className: '',
+    iconSize: [34, 34],
+  });
+}
+
+function populateStateFilter(schools) {
+  const select = document.getElementById('mapStateFilter');
+  if (!select) return;
+  const states = Array.from(new Set(schools.map(s => s.state))).sort();
+  states.forEach(state => {
+    const opt = document.createElement('option');
+    opt.value = state;
+    opt.textContent = state;
+    select.appendChild(opt);
+  });
+  select.addEventListener('change', () => {
+    const val = select.value;
+    const filtered = val ? allSchools.filter(s => s.state === val) : allSchools;
+    renderSchoolMarkers(filtered);
+    const markers = Object.values(markerById);
+    if (markers.length) schoolMap.fitBounds(L.featureGroup(markers).getBounds().pad(0.2));
+  });
+}
+
+let mapInitialized = false;
+async function initSchoolMap() {
+  if (mapInitialized) { setTimeout(() => schoolMap && schoolMap.invalidateSize(), 200); return; }
+  mapInitialized = true;
+
+  schoolMap = L.map('schoolMap', {
+    zoomControl: true,
+    scrollWheelZoom: false,
+    minZoom: 4,
+    maxZoom: 10,
+    attributionControl: false,
+  }).setView([22.5, 80], 5);
+
+  // A dedicated pane, below the marker pane, so state-name labels always sit
+  // behind school dots and city labels regardless of add/remove order.
+  schoolMap.createPane('stateLabelPane');
+  schoolMap.getPane('stateLabelPane').style.zIndex = 450;
+
+  L.control.attribution({ prefix: false })
+    .addAttribution('Boundaries: Natural Earth (public domain)')
+    .addTo(schoolMap);
+
+  // No raster basemap — just India's state outlines (dotted, so the internal
+  // borders read as texture rather than as a real administrative map), our
+  // school dots, and labels for cities that have a school.
+  try {
+    const res = await fetch('data/india-states.geojson');
+    const states = await res.json();
+    const statesLayer = L.geoJSON(states, {
+      interactive: false,
+      style: { color: 'rgba(200,151,58,0.45)', weight: 1, dashArray: '1,5', lineCap: 'round', fillColor: '#14100a', fillOpacity: 1 },
+    }).addTo(schoolMap);
+    schoolMap.fitBounds(statesLayer.getBounds().pad(0.04));
+    schoolMap.setMaxBounds(statesLayer.getBounds().pad(0.15));
+    renderStateLabels(states.features);
+    schoolMap.on('zoomend', updateStateLabelVisibility);
+  } catch (err) {
+    console.warn('India state outlines failed to load, showing plain background:', err);
+  }
+
+  schoolMarkersLayer = L.markerClusterGroup({
+    iconCreateFunction: makeClusterIcon,
+  });
+  schoolMap.addLayer(schoolMarkersLayer);
+  schoolMap.on('zoomend', updateCityLabelVisibility);
+
+  allSchools = await loadSchools();
+  renderSchoolMarkers(allSchools);
+  populateStateFilter(allSchools);
+
+  setTimeout(() => schoolMap.invalidateSize(), 200);
+}
 </script>
 </body>
 </html>
