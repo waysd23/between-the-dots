@@ -161,6 +161,51 @@
     .braille-showcase { margin-bottom: 4rem; padding: 3rem 2.5rem; background: rgba(107,25,55,0.03); border: 1px solid rgba(107,25,55,0.1); }
     .braille-showcase h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; font-weight: 300; color: var(--gold-light); margin-bottom: 0.5rem; }
     .braille-showcase-sub { font-size: 0.72rem; color: rgba(43,20,27,0.35); font-family: 'DM Mono', monospace; letter-spacing: 0.15em; margin-bottom: 2rem; }
+
+    /* ── EVENTS ("On the Ground") ── */
+    .events-section { margin-bottom: 4rem; }
+    .events-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; margin-bottom: 0.7rem; }
+    .events-title em { font-style: italic; color: var(--gold); }
+    .events-sub { font-size: 0.85rem; color: rgba(43,20,27,0.45); font-style: italic; margin-bottom: 2.5rem; max-width: 550px; line-height: 1.7; }
+    .events-list { display: flex; flex-direction: column; gap: 1px; background: rgba(107,25,55,0.08); }
+
+    .event-placard { background: var(--deep); transition: background 0.3s; overflow: hidden; }
+    .event-placard-header { display: flex; align-items: center; gap: 1.5rem; padding: 1.8rem 2.5rem; cursor: none; flex-wrap: wrap; }
+    .event-placard-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); background: rgba(107,25,55,0.08); border: 1px solid rgba(107,25,55,0.2); padding: 0.35rem 0.8rem; flex-shrink: 0; }
+    .event-placard-info { flex: 1; min-width: 220px; }
+    .event-placard-school { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--cream); margin-bottom: 0.3rem; }
+    .event-placard-meta { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.06em; color: rgba(43,20,27,0.4); text-transform: uppercase; }
+    .event-placard-toggle { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(107,25,55,0.3); padding: 0.6rem 1.1rem; background: transparent; cursor: none; flex-shrink: 0; transition: all 0.3s; }
+    .event-placard-toggle:hover { background: rgba(107,25,55,0.08); }
+    .event-placard.open .event-placard-toggle { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+    .event-placard-body { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(.22,.68,0,1.01); }
+    .event-placard.open .event-placard-body { max-height: 2600px; }
+    .event-placard-content { padding: 0.5rem 2.5rem 3rem; display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: start; }
+
+    .event-school-row { display: flex; align-items: center; gap: 0.9rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+    .event-school-row .map-panel-tag { margin-bottom: 0; }
+    .event-school-name { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.02em; color: rgba(43,20,27,0.55); }
+    .event-school-link { color: var(--gold-light); text-decoration: none; border-bottom: 1px solid rgba(107,25,55,0.25); transition: border-color 0.2s; }
+    .event-school-link:hover { border-color: var(--gold-light); }
+
+    .event-summary { font-size: 0.85rem; color: rgba(43,20,27,0.55); font-style: italic; margin-bottom: 1.3rem; padding-bottom: 1.3rem; border-bottom: 1px solid rgba(107,25,55,0.08); }
+    .event-narrative p { font-size: 0.88rem; line-height: 1.9; color: rgba(43,20,27,0.7); margin-bottom: 1.1rem; }
+    .event-quote { margin-top: 1.3rem; padding: 1.3rem 1.5rem; border-left: 2px solid var(--gold); background: rgba(107,25,55,0.05); }
+    .event-quote p { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold-light); line-height: 1.5; margin-bottom: 0.5rem; }
+    .event-quote-attr { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.15em; color: rgba(43,20,27,0.35); text-transform: uppercase; }
+
+    .event-photo-stack { position: relative; width: 100%; max-width: 300px; aspect-ratio: 4 / 5; margin: 0 auto; user-select: none; }
+    .event-photo-card { position: absolute; inset: 0; border: 6px solid var(--deep); box-shadow: 0 8px 24px rgba(0,0,0,0.35); outline: 1px solid rgba(107,25,55,0.25); overflow: hidden; cursor: none; transition: transform 0.6s cubic-bezier(.22,.68,0,1.01), opacity 0.5s ease; will-change: transform, opacity; }
+    .event-photo-card img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .event-photo-hint { text-align: center; font-family: 'DM Mono', monospace; font-size: 0.54rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(43,20,27,0.3); margin-top: 1rem; }
+    .event-photo-progress { display: flex; gap: 4px; justify-content: center; margin-top: 0.6rem; }
+    .event-photo-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(107,25,55,0.18); transition: background 0.3s, transform 0.3s; }
+    .event-photo-dot.active { background: var(--gold); transform: scale(1.5); }
+
+    @media (max-width: 780px) {
+      .event-placard-content { grid-template-columns: 1fr; }
+    }
     .braille-alpha-row { display: flex; flex-wrap: wrap; gap: 1.5rem 1.2rem; }
     .braille-letter-block { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
     .braille-cell { display: grid; grid-template-columns: repeat(2, 8px); gap: 4px; }
@@ -190,40 +235,10 @@
     #tab3 { padding: 7rem 4rem 4rem; flex-direction: column; min-height: auto; }
     #tab3.active { display: flex; }
 
-    .partner-hero { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 7rem); font-weight: 300; line-height: 0.95; max-width: 750px; margin-bottom: 1.5rem; }
-    .partner-hero em { font-style: italic; color: var(--gold); display: block; }
-    .partner-sub { font-size: 1rem; color: rgba(43,20,27,0.55); max-width: 560px; line-height: 1.85; font-style: italic; margin-bottom: 5rem; }
-
-    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(107,25,55,0.08); margin-bottom: 5rem; }
-    .why-card { background: var(--deep); padding: 2.5rem 2rem; border-top: 2px solid transparent; transition: all 0.35s; }
-    .why-card:hover { background: rgba(107,25,55,0.04); border-top-color: var(--gold); }
-    .why-icon { font-size: 1.5rem; margin-bottom: 1.2rem; display: block; }
-    .why-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.8rem; }
-    .why-text { font-size: 0.82rem; line-height: 1.85; color: rgba(43,20,27,0.55); }
-
-    .tiers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(107,25,55,0.08); margin-bottom: 5rem; }
-    .tier-card { background: var(--deep); padding: 3rem 2.5rem; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: background 0.3s; }
-    .tier-card:hover { background: rgba(107,25,55,0.03); }
-    .tier-card.featured { background: linear-gradient(145deg, rgba(107,25,55,0.1), rgba(107,25,55,0.03)); border: 1px solid rgba(107,25,55,0.25); }
-    .tier-card.featured::before { content: 'Most Impactful'; position: absolute; top: 0; right: 0; background: var(--gold); color: var(--ink); font-family: 'DM Mono', monospace; font-size: 0.52rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.4rem 0.8rem; }
-    .tier-braille { display: grid; grid-template-columns: repeat(2, 9px); gap: 4px; margin-bottom: 1.5rem; }
-    .tbd { width: 9px; height: 9px; border-radius: 50%; }
-    .tbd.on { background: var(--gold); box-shadow: 0 0 8px rgba(107,25,55,0.5); }
-    .tbd.off { background: rgba(107,25,55,0.1); }
-    .tier-name { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 400; font-style: italic; color: var(--cream); margin-bottom: 0.4rem; }
-    .tier-tagline { font-family: 'DM Mono', monospace; font-size: 0.58rem; color: var(--gold); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2rem; }
-    .tier-perks { list-style: none; flex: 1; margin-bottom: 2.5rem; }
-    .tier-perks li { font-size: 0.82rem; line-height: 1.8; color: rgba(43,20,27,0.65); padding: 0.5rem 0; border-bottom: 1px solid rgba(107,25,55,0.06); display: flex; gap: 0.8rem; align-items: flex-start; }
-    .tier-perks li::before { content: '⠿'; color: var(--gold); font-size: 0.7rem; flex-shrink: 0; margin-top: 0.2rem; }
-    .tier-cta { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.9rem 1.5rem; border: 1px solid rgba(107,25,55,0.35); background: transparent; color: var(--gold); cursor: none; transition: all 0.3s; text-align: center; text-decoration: none; display: block; }
-    .tier-cta:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-
-    .partner-types-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(107,25,55,0.07); margin-bottom: 5rem; }
-    .ptype { background: var(--deep); padding: 2.5rem; display: flex; gap: 2rem; transition: background 0.3s; }
-    .ptype:hover { background: rgba(107,25,55,0.03); }
-    .ptype-icon { font-size: 2rem; flex-shrink: 0; line-height: 1; }
-    .ptype-title { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--cream); margin-bottom: 0.7rem; }
-    .ptype-text { font-size: 0.82rem; line-height: 1.8; color: rgba(43,20,27,0.55); }
+    .partner-hero { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4.6vw, 4.2rem); font-weight: 300; font-style: italic; line-height: 1.3; max-width: 800px; margin-bottom: 1.8rem; }
+    .partner-hero em { font-style: italic; color: var(--gold); }
+    .partner-sub { font-size: 1rem; color: rgba(43,20,27,0.55); max-width: 560px; line-height: 1.85; font-style: italic; margin-bottom: 1.2rem; }
+    .partner-quote-attr { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; color: rgba(43,20,27,0.35); text-transform: uppercase; margin-bottom: 5rem; }
 
     .contact-section { background: linear-gradient(135deg, rgba(107,25,55,0.07), rgba(168,60,45,0.04), rgba(107,140,110,0.04)); border: 1px solid rgba(107,25,55,0.18); padding: 4rem 3.5rem; margin-bottom: 5rem; position: relative; overflow: hidden; }
     .contact-section::before { content: '⠃⠞⠙'; position: absolute; top: -1rem; right: 2rem; font-size: 4rem; color: rgba(107,25,55,0.05); letter-spacing: 1rem; }
@@ -249,20 +264,6 @@
     .form-feedback.ok { color: var(--sage); }
     .form-feedback.err { color: var(--rust); }
 
-    .quote-strip { border-top: 1px solid rgba(107,25,55,0.1); border-bottom: 1px solid rgba(107,25,55,0.1); padding: 4rem 0; margin-bottom: 5rem; text-align: center; }
-    .quote-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); font-style: italic; font-weight: 300; color: rgba(43,20,27,0.7); max-width: 800px; margin: 0 auto 1.5rem; line-height: 1.5; }
-    .quote-text span { color: var(--gold); }
-    .quote-attr { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; color: rgba(43,20,27,0.25); text-transform: uppercase; }
-
-    .faq-section { margin-bottom: 5rem; }
-    .faq-title { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; margin-bottom: 2.5rem; }
-    .faq-item { border-bottom: 1px solid rgba(107,25,55,0.1); }
-    .faq-q { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--cream); padding: 1.4rem 0; cursor: none; display: flex; justify-content: space-between; align-items: center; user-select: none; transition: color 0.2s; }
-    .faq-q:hover { color: var(--gold-light); }
-    .faq-toggle { font-family: 'DM Mono', monospace; font-size: 1rem; color: var(--gold); transition: transform 0.3s; flex-shrink: 0; }
-    .faq-item.open .faq-toggle { transform: rotate(45deg); }
-    .faq-a { font-size: 0.85rem; line-height: 1.85; color: rgba(43,20,27,0.6); max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
-    .faq-item.open .faq-a { max-height: 300px; padding-bottom: 1.5rem; }
 
     /* ═══════════════════════════════════════════
        TAB 4 — READING ROOM
@@ -274,104 +275,40 @@
     .reading-hero em { font-style: italic; color: var(--gold); }
     .reading-hero-sub { font-size: 0.95rem; color: rgba(43,20,27,0.5); font-style: italic; line-height: 1.85; max-width: 580px; margin-bottom: 4rem; }
 
-    /* Story cards */
-    .stories-row { display: flex; flex-direction: column; gap: 1px; margin-bottom: 5rem; }
-    .story-card { background: var(--deep); border: 1px solid rgba(107,25,55,0.1); transition: border-color 0.3s; overflow: hidden; }
-    .story-card:hover { border-color: rgba(107,25,55,0.3); }
-    .story-card-header { display: flex; align-items: center; justify-content: space-between; padding: 1.8rem 2.5rem; border-bottom: 1px solid rgba(107,25,55,0.08); cursor: none; }
-    .story-card-meta { display: flex; align-items: center; gap: 1.5rem; }
-    .story-tag { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); background: rgba(107,25,55,0.08); border: 1px solid rgba(107,25,55,0.2); padding: 0.3rem 0.7rem; }
-    .story-read-time { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.15em; color: rgba(43,20,27,0.3); text-transform: uppercase; }
-    .story-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 600; color: var(--cream); }
-    .story-expand-btn { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(107,25,55,0.3); padding: 0.5rem 1rem; background: transparent; cursor: none; transition: all 0.3s; flex-shrink: 0; }
-    .story-expand-btn:hover { background: var(--gold); color: var(--ink); }
-    .story-body { display: none; grid-template-columns: 1fr 1fr; }
-    .story-body.open { display: grid; }
-    .story-text-panel { padding: 3rem 2.5rem; border-right: 1px solid rgba(107,25,55,0.08); }
-    .story-author { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.2em; color: rgba(43,20,27,0.3); text-transform: uppercase; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.8rem; }
-    .story-author::before { content: ''; width: 24px; height: 1px; background: rgba(107,25,55,0.3); }
-    .story-excerpt { font-size: 0.92rem; line-height: 2; color: rgba(43,20,27,0.8); font-style: italic; }
-    .story-excerpt p { margin-bottom: 1.2rem; }
-    .story-excerpt p:first-child::first-letter { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-weight: 600; color: var(--gold); float: left; line-height: 0.8; margin-right: 0.15em; margin-top: 0.1em; }
-    .story-braille-panel { padding: 3rem 2.5rem; background: rgba(107,25,55,0.02); display: flex; flex-direction: column; }
-    .braille-panel-label { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.25em; color: rgba(43,20,27,0.25); text-transform: uppercase; margin-bottom: 1.5rem; }
-    .braille-title-render { display: flex; flex-wrap: wrap; gap: 12px 10px; margin-bottom: 2.5rem; }
-    .btc { display: grid; grid-template-columns: repeat(2, 9px); gap: 4px; }
-    .btc-dot { width: 9px; height: 9px; border-radius: 50%; }
-    .btc-dot.on { background: var(--gold); box-shadow: 0 0 8px rgba(107,25,55,0.45); }
-    .btc-dot.off { background: rgba(107,25,55,0.08); border: 1px solid rgba(107,25,55,0.12); }
-    .braille-space { width: 9px; }
-    .braille-fun-fact { margin-top: auto; background: rgba(107,25,55,0.05); border: 1px solid rgba(107,25,55,0.12); padding: 1.5rem; }
-    .braille-fun-fact-label { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.7rem; }
-    .braille-fun-fact p { font-size: 0.8rem; line-height: 1.75; color: rgba(43,20,27,0.55); font-style: italic; }
+    /* Guide sections (Ways to Write Braille / Grammar / Tips) */
+    .guide-section { margin-bottom: 4.5rem; }
+    .guide-tools-grid, .guide-rules-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(107,25,55,0.08); }
+    .guide-tool-card, .guide-rule-card { background: var(--deep); padding: 2.5rem; transition: background 0.3s; }
+    .guide-tool-card:hover, .guide-rule-card:hover { background: rgba(107,25,55,0.03); }
+    .guide-tool-name, .guide-rule-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.8rem; }
+    .guide-tool-text, .guide-rule-text { font-size: 0.88rem; line-height: 1.85; color: rgba(43,20,27,0.65); margin-bottom: 1rem; }
+    .guide-steps-label { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(43,20,27,0.35); margin-bottom: 0.8rem; }
+    .guide-steps { list-style: decimal; padding-left: 1.2rem; display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.2rem; }
+    .guide-steps li { font-size: 0.85rem; line-height: 1.75; color: rgba(43,20,27,0.7); }
+    .guide-note { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: 0.03em; color: var(--gold); background: rgba(107,25,55,0.06); border-left: 2px solid var(--gold); padding: 0.8rem 1rem; line-height: 1.6; }
+    .guide-rule-example { font-family: 'DM Mono', monospace; font-size: 0.72rem; letter-spacing: 0.04em; color: var(--gold); }
+    .guide-rule-card-wide { grid-column: 1 / -1; }
 
-    /* Poem section */
-    .poem-section { margin-bottom: 5rem; }
-    .poem-section h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 0.7rem; }
-    .poem-section h2 em { color: var(--gold); font-style: italic; }
-    .poem-section .poem-intro { font-size: 0.85rem; color: rgba(43,20,27,0.45); font-style: italic; margin-bottom: 2.5rem; max-width: 500px; line-height: 1.7; }
-    .poems-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(107,25,55,0.08); }
+    .guide-punct-card { background: var(--deep); border: 1px solid rgba(107,25,55,0.1); padding: 2.5rem; margin: 1px 0; }
+    .guide-punct-table { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem 2rem; margin-top: 1.2rem; }
+    .guide-punct-row { display: flex; justify-content: space-between; gap: 1rem; padding: 0.6rem 0; border-bottom: 1px solid rgba(107,25,55,0.08); font-size: 0.85rem; }
+    .guide-punct-row span:first-child { color: rgba(43,20,27,0.75); }
+    .guide-punct-row span:last-child { font-family: 'DM Mono', monospace; font-size: 0.72rem; color: var(--gold); letter-spacing: 0.03em; }
 
-    .poem-card { background: var(--deep); padding: 0; position: relative; overflow: hidden; transition: background 0.3s; display: flex; flex-direction: column; }
-    .poem-card:hover { background: rgba(107,25,55,0.03); }
-    .poem-card::before { content: '"'; position: absolute; top: -0.5rem; left: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 8rem; color: rgba(107,25,55,0.04); line-height: 1; pointer-events: none; }
+    .guide-bullet-list { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+    .guide-bullet-list li { font-size: 0.88rem; line-height: 1.75; color: rgba(43,20,27,0.7); padding-left: 1.3rem; position: relative; }
+    .guide-bullet-list li::before { content: '⠂'; position: absolute; left: 0; color: var(--gold); }
 
-    /* Poem header bar */
-    .poem-header { padding: 2.2rem 2.5rem 0; }
-    .poem-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-weight: 600; color: var(--gold-light); margin-bottom: 0.35rem; }
-    .poem-byline { font-family: 'DM Mono', monospace; font-size: 0.56rem; letter-spacing: 0.18em; color: rgba(43,20,27,0.22); text-transform: uppercase; margin-bottom: 1.4rem; }
+    .guide-tips-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: rgba(107,25,55,0.08); }
+    .guide-tip { background: var(--deep); padding: 2rem 1.6rem; transition: background 0.3s; }
+    .guide-tip:hover { background: rgba(107,25,55,0.03); }
+    .guide-tip-num { font-family: 'DM Mono', monospace; font-size: 1.6rem; color: rgba(107,25,55,0.15); font-weight: 300; margin-bottom: 0.8rem; }
+    .guide-tip p { font-size: 0.82rem; line-height: 1.75; color: rgba(43,20,27,0.65); }
 
-    /* Control bar */
-    .poem-controls { display: flex; align-items: center; gap: 0.6rem; padding: 0 2.5rem 1.5rem; border-bottom: 1px solid rgba(107,25,55,0.08); flex-wrap: wrap; }
-    .poem-btn { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.5rem 1rem; border: 1px solid rgba(107,25,55,0.22); background: transparent; color: rgba(43,20,27,0.45); cursor: none; transition: all 0.25s; display: flex; align-items: center; gap: 0.5rem; white-space: nowrap; }
-    .poem-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .poem-btn.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
-    .poem-btn.voice-btn { border-color: rgba(107,140,110,0.4); color: var(--sage); }
-    .poem-btn.voice-btn:hover { border-color: var(--sage); background: rgba(107,140,110,0.12); }
-    .poem-btn.voice-btn.playing { background: var(--sage); color: var(--ink); border-color: var(--sage); }
-    .poem-btn-icon { font-size: 0.9rem; line-height: 1; }
-    .poem-speed-label { font-family: 'DM Mono', monospace; font-size: 0.52rem; color: rgba(43,20,27,0.2); letter-spacing: 0.1em; margin-left: auto; }
-
-    /* Poem content panels */
-    .poem-content { flex: 1; position: relative; }
-    .poem-view { padding: 2rem 2.5rem 2.5rem; }
-    .poem-view.hidden { display: none; }
-
-    /* Text view */
-    .poem-body { font-size: 0.9rem; line-height: 2.1; color: rgba(43,20,27,0.75); font-style: italic; white-space: pre-line; }
-    .poem-line-highlight { background: rgba(107,25,55,0.08); margin: 0 -0.3rem; padding: 0 0.3rem; border-radius: 2px; transition: background 0.3s; }
-
-    /* Braille view */
-    .poem-braille-view { display: flex; flex-direction: column; gap: 1.2rem; }
-    .poem-braille-stanza { display: flex; flex-direction: column; gap: 0.9rem; }
-    .poem-braille-line-row { display: flex; flex-wrap: wrap; gap: 8px 6px; align-items: center; min-height: 38px; }
-    .poem-braille-word { display: flex; gap: 4px; align-items: flex-end; }
-    .pbc { display: grid; grid-template-columns: repeat(2, 8px); gap: 3px; }
-    .pbd { width: 8px; height: 8px; border-radius: 50%; transition: all 0.2s; }
-    .pbd.on { background: var(--gold); box-shadow: 0 0 6px rgba(107,25,55,0.5); }
-    .pbd.off { background: rgba(107,25,55,0.08); border: 1px solid rgba(107,25,55,0.13); }
-    .poem-braille-gap { width: 10px; }
-    .poem-braille-stanza-break { width: 100%; height: 1px; background: rgba(107,25,55,0.06); margin: 0.2rem 0; }
-
-    /* Speaking highlight */
-    .poem-speaking .pbd.on { animation: speakPulse 0.9s ease-in-out infinite; }
-    @keyframes speakPulse { 0%,100%{box-shadow:0 0 6px rgba(107,25,55,0.5);} 50%{box-shadow:0 0 18px rgba(107,25,55,0.9); background: var(--gold-light);} }
-
-    /* Voice status bar */
-    .poem-voice-status { padding: 0.8rem 2.5rem; background: rgba(107,140,110,0.06); border-top: 1px solid rgba(107,140,110,0.1); display: none; align-items: center; gap: 0.8rem; }
-    .poem-voice-status.visible { display: flex; }
-    .voice-wave { display: flex; gap: 2px; align-items: center; height: 16px; }
-    .voice-bar { width: 3px; background: var(--sage); border-radius: 2px; animation: voiceWave 0.7s ease-in-out infinite; }
-    .voice-bar:nth-child(2) { animation-delay: 0.1s; }
-    .voice-bar:nth-child(3) { animation-delay: 0.2s; }
-    .voice-bar:nth-child(4) { animation-delay: 0.3s; }
-    .voice-bar:nth-child(5) { animation-delay: 0.15s; }
-    @keyframes voiceWave { 0%,100%{height:4px;opacity:0.4} 50%{height:14px;opacity:1} }
-    .voice-status-text { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; color: var(--sage); text-transform: uppercase; }
-    .voice-progress { flex: 1; height: 1px; background: rgba(107,140,110,0.15); position: relative; overflow: hidden; }
-    .voice-progress-bar { height: 100%; background: var(--sage); width: 0%; transition: width 0.3s linear; }
-
-    @media (max-width: 960px) { .poems-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 780px) {
+      .guide-tools-grid, .guide-rules-grid, .guide-punct-table { grid-template-columns: 1fr; }
+      .guide-tips-grid { grid-template-columns: repeat(2, 1fr); }
+    }
 
     /* ── BRAILLE TRANSLATOR */
     .translator-section { margin-bottom: 5rem; }
@@ -404,11 +341,6 @@
     .legend-dot.on { background: var(--gold); }
     .legend-dot.off { background: rgba(107,25,55,0.12); border: 1px solid rgba(107,25,55,0.2); }
 
-    /* Braille facts strip */
-    .braille-facts-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(107,25,55,0.07); margin-bottom: 5rem; }
-    .braille-fact { background: var(--deep); padding: 2rem 2rem; }
-    .braille-fact-num { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: var(--gold); font-weight: 300; margin-bottom: 0.5rem; }
-    .braille-fact-text { font-size: 0.8rem; line-height: 1.75; color: rgba(43,20,27,0.5); font-style: italic; }
 
     /* ═══════════════════════════════════════════
        TAB 5 — THE MAP
@@ -473,6 +405,43 @@
       .map-panel { max-height: 300px; }
     }
 
+    /* ═══════════════════════════════════════════
+       TAB 6 — ABOUT
+    ═══════════════════════════════════════════ */
+    #tab6 { padding: 7rem 4rem 4rem; flex-direction: column; min-height: auto; }
+    #tab6.active { display: flex; }
+
+    .about-hero { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 6vw, 6.5rem); font-weight: 300; line-height: 0.95; margin-bottom: 1.2rem; }
+    .about-hero em { font-style: italic; color: var(--gold); }
+    .about-hero-sub { font-size: 0.95rem; color: rgba(43,20,27,0.5); font-style: italic; line-height: 1.85; max-width: 640px; margin-bottom: 3.5rem; }
+
+    .about-intro { display: grid; grid-template-columns: 300px 1fr; gap: 3.5rem; margin-bottom: 4.5rem; align-items: start; }
+    .about-photo-frame { position: relative; border: 1px solid rgba(107,25,55,0.25); padding: 10px; background: var(--deep); }
+    .about-photo-frame img { display: block; width: 100%; height: 380px; object-fit: cover; object-position: center 15%; }
+    .about-photo-caption { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(43,20,27,0.4); text-align: center; margin-top: 0.9rem; }
+
+    .about-name { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 600; color: var(--cream); margin-bottom: 0.2rem; }
+    .about-title { font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.6rem; }
+    .about-bio-text { font-size: 0.95rem; line-height: 1.95; color: rgba(43,20,27,0.7); margin-bottom: 1.8rem; max-width: 60ch; }
+    .about-facts { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.8rem; }
+    .about-fact { font-family: 'DM Mono', monospace; font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(107,25,55,0.06); border: 1px solid rgba(107,25,55,0.18); padding: 0.5rem 0.9rem; }
+    .about-linkedin { display: inline-flex; align-items: center; gap: 0.6rem; font-family: 'DM Mono', monospace; font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(107,25,55,0.35); padding: 0.8rem 1.3rem; text-decoration: none; transition: all 0.3s; cursor: none; }
+    .about-linkedin:hover { background: var(--gold); color: var(--ink); }
+
+    .about-narrative { display: flex; flex-direction: column; gap: 3rem; margin-bottom: 4.5rem; max-width: 780px; }
+    .about-narrative-block .section-label { margin-bottom: 1.1rem; }
+    .about-narrative-block p { font-size: 0.98rem; line-height: 2; color: rgba(43,20,27,0.75); }
+    .about-narrative-block p em { font-style: italic; color: var(--gold); }
+
+    .about-closing { border-top: 1px solid rgba(107,25,55,0.12); border-bottom: 1px solid rgba(107,25,55,0.12); padding: 3.5rem 0; text-align: center; }
+    .about-closing-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.4rem, 2.8vw, 2.2rem); font-style: italic; font-weight: 300; color: rgba(43,20,27,0.8); max-width: 760px; margin: 0 auto 1.2rem; line-height: 1.5; }
+    .about-closing-attr { font-family: 'DM Mono', monospace; font-size: 0.58rem; letter-spacing: 0.2em; color: rgba(43,20,27,0.35); text-transform: uppercase; }
+
+    @media (max-width: 780px) {
+      .about-intro { grid-template-columns: 1fr; }
+      .about-photo-frame { max-width: 300px; }
+    }
+
     /* FOOTER */
     footer { position: relative; z-index: 2; border-top: 1px solid rgba(107,25,55,0.12); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
     .footer-left { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; color: rgba(43,20,27,0.35); }
@@ -497,10 +466,9 @@
       .hero-braille-panel { display: none; }
       .mission-row { flex-direction: column; gap: 1px; }
       .counter-row { grid-template-columns: repeat(2, 1fr); }
-      .two-col, .contact-inner, .story-body, .youtube-wrapper { grid-template-columns: 1fr; }
-      .story-text-panel { border-right: none; border-bottom: 1px solid rgba(107,25,55,0.08); }
-      .stats-row, .steps-grid, .why-grid, .tiers-grid, .braille-facts-strip { grid-template-columns: 1fr; }
-      .impact-grid, .partner-types-grid, .poems-grid { grid-template-columns: 1fr; }
+      .two-col, .contact-inner, .youtube-wrapper { grid-template-columns: 1fr; }
+      .stats-row, .steps-grid { grid-template-columns: 1fr; }
+      .impact-grid, .guide-tips-grid { grid-template-columns: repeat(2, 1fr); }
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
@@ -527,8 +495,9 @@
     <button class="nav-tab active" data-tab="tab1">Our Mission</button>
     <button class="nav-tab" data-tab="tab2">The Work</button>
     <button class="nav-tab" data-tab="tab3">Partner</button>
-    <button class="nav-tab" data-tab="tab4">Reading Room</button>
+    <button class="nav-tab" data-tab="tab4">Transcribe Guide</button>
     <button class="nav-tab" data-tab="tab5">The Map</button>
+    <button class="nav-tab" data-tab="tab6">About</button>
   </div>
 </nav>
 
@@ -554,25 +523,25 @@
       <div class="mission-card-dots"><div class="mcd on"></div><div class="mcd on"></div><div class="mcd on"></div><div class="mcd off"></div><div class="mcd off"></div><div class="mcd off"></div></div>
       <div class="mission-card-num">01</div>
       <div class="mission-card-title">Original Works</div>
-      <p class="mission-card-text">New stories from scratch — not textbooks, not translations. Modern, relatable fiction in short formats that feel alive in the hands of a young reader.</p>
+      <p class="mission-card-text">Stories from the heart, written by me. Modern, relatable fiction in short-story form — stories that anyone can pick up, read, and love.</p>
     </div>
     <div class="mission-card">
       <div class="mission-card-dots"><div class="mcd on"></div><div class="mcd off"></div><div class="mcd on"></div><div class="mcd on"></div><div class="mcd off"></div><div class="mcd off"></div></div>
       <div class="mission-card-num">02</div>
-      <div class="mission-card-title">Braille First</div>
-      <p class="mission-card-text">Every story transcribed by certified Braille professionals into Grade 1 or Grade 2 format. Short enough to finish in a sitting — long enough to leave a mark.</p>
+      <div class="mission-card-title">Braille Transcription</div>
+      <p class="mission-card-text">Every story is personally transcribed and typed by me into Grade 1 Braille, making each book accessible from the very first page. Short enough to finish in one sitting, but meaningful enough to stay with you.</p>
     </div>
     <div class="mission-card">
       <div class="mission-card-dots"><div class="mcd off"></div><div class="mcd on"></div><div class="mcd on"></div><div class="mcd off"></div><div class="mcd on"></div><div class="mcd off"></div></div>
       <div class="mission-card-num">03</div>
       <div class="mission-card-title">Free Distribution</div>
-      <p class="mission-card-text">Every book donated directly to blind schools, libraries, and NGOs across India. No price tag. No application. The joy of reading should never be gated behind affordability.</p>
+      <p class="mission-card-text">Each book is distributed free of charge to blind schools across India. No price tag. No barriers. Because the joy of reading should never be withheld because of money.</p>
     </div>
     <div class="mission-card">
       <div class="mission-card-dots"><div class="mcd on"></div><div class="mcd on"></div><div class="mcd off"></div><div class="mcd on"></div><div class="mcd on"></div><div class="mcd off"></div></div>
       <div class="mission-card-num">04</div>
-      <div class="mission-card-title">Community Loop</div>
-      <p class="mission-card-text">Teachers and students shape every next story — themes, tone, length, language. A model designed to learn, to listen, and to grow with every cycle.</p>
+      <div class="mission-card-title">Spreading Awareness</div>
+      <p class="mission-card-text">Creating a shift in how we think about accessibility. Visually impaired people don't need our pity or charity — they need access, inclusion, and awareness.</p>
     </div>
   </div>
 
@@ -756,6 +725,14 @@
     <p class="braille-showcase-sub">⠿ Standard English Braille — Grade 1 Alphabet · Each character is a 2×3 grid of raised dots</p>
     <div class="braille-alpha-row" id="brailleAlpha"></div>
   </div>
+
+  <!-- EVENTS ("ON THE GROUND") -->
+  <div class="events-section">
+    <div class="section-label"><span class="bi">⠿</span> On the Ground</div>
+    <h2 class="events-title">Moments <em>worth keeping.</em></h2>
+    <p class="events-sub">Between the Dots isn't only written from a desk — here's where we've shown up in person. Select a visit to see how it went.</p>
+    <div class="events-list" id="eventsList"></div>
+  </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
@@ -763,78 +740,9 @@
 ═══════════════════════════════════════════ -->
 <section id="tab3">
   <div class="section-label"><span class="bi">⠿</span> Partner With Us</div>
-  <h2 class="partner-hero">Help us put<br><em>a story</em><br>in every hand.</h2>
-  <p class="partner-sub">Between the Dots runs on the generosity of individuals, organisations, and institutions who believe that literacy is a right — not a privilege. Whether you want to sponsor a book, donate expertise, or build a long-term partnership, there is a place for you in this work.</p>
-
-  <div class="section-label"><span class="bi">⠂</span> Why Partner With Us</div>
-  <div class="why-grid">
-    <div class="why-card"><span class="why-icon">🎯</span><div class="why-title">Direct Impact</div><p class="why-text">Every contribution goes toward producing and delivering a book. We keep overheads minimal and track exactly where each contribution lands — which school, which students, how many books.</p></div>
-    <div class="why-card"><span class="why-icon">📐</span><div class="why-title">Measurable Outcomes</div><p class="why-text">We document each distribution with school receipts, student counts, and follow-up feedback. Sponsors receive transparent impact reports — no guesswork, no vague metrics.</p></div>
-    <div class="why-card"><span class="why-icon">🌱</span><div class="why-title">Scalable Model</div><p class="why-text">Our process is designed to grow. Partnering isn't just funding one book — it's investing in a model that can reach more schools, more cities, and more children with every cycle.</p></div>
-    <div class="why-card"><span class="why-icon">💛</span><div class="why-title">Brand Alignment</div><p class="why-text">Disability inclusion, literacy, and children's welfare are causes your audience cares about. We offer meaningful co-branding opportunities that go beyond a logo on a banner.</p></div>
-    <div class="why-card"><span class="why-icon">🔗</span><div class="why-title">NGO Access</div><p class="why-text">We have established relationships with blind schools and disability NGOs across India. Partnering gives your organisation a verified, trusted pathway into this community.</p></div>
-    <div class="why-card"><span class="why-icon">📖</span><div class="why-title">Content Legacy</div><p class="why-text">Sponsored books carry your name — and are read, shared, re-read, and passed on for years. It is not advertising. It is a legacy that lives in the hands of children.</p></div>
-  </div>
-
-  <div class="quote-strip">
-    <p class="quote-text">"The world is full of children who are told, in a thousand quiet ways, that stories are not <span>for them</span>. We are here to prove otherwise."</p>
-    <p class="quote-attr">⠿ Between the Dots · Founding Principle</p>
-  </div>
-
-  <div class="section-label"><span class="bi">⠿</span> Sponsorship Tiers</div>
-  <div class="tiers-grid">
-    <div class="tier-card">
-      <div class="tier-braille"><div class="tbd on"></div><div class="tbd off"></div><div class="tbd off"></div><div class="tbd off"></div><div class="tbd off"></div><div class="tbd off"></div></div>
-      <div class="tier-name">Seed</div>
-      <div class="tier-tagline">Individual Supporter</div>
-      <ul class="tier-perks">
-        <li>Sponsor production of one Braille story book</li>
-        <li>Named acknowledgement in the book's colophon</li>
-        <li>Distribution report — which school received the book</li>
-        <li>Annual newsletter on programme progress</li>
-        <li>Your name on our Partners page online</li>
-      </ul>
-      <a href="mailto:rhea.divekar@gmail.com?subject=Seed%20Sponsorship%20%E2%80%94%20Between%20the%20Dots&body=Hello%2C%0A%0AI%20am%20interested%20in%20the%20Seed%20Sponsorship%20tier.%0A%0APlease%20share%20more%20details.%0A%0AThank%20you." class="tier-cta">Express Interest</a>
-    </div>
-    <div class="tier-card featured">
-      <div class="tier-braille"><div class="tbd on"></div><div class="tbd on"></div><div class="tbd on"></div><div class="tbd off"></div><div class="tbd off"></div><div class="tbd off"></div></div>
-      <div class="tier-name">Chapter</div>
-      <div class="tier-tagline">Organisation / CSR Partner</div>
-      <ul class="tier-perks">
-        <li>Sponsor a full collection — 5 original Braille story books</li>
-        <li>Co-branded colophon on all 5 books</li>
-        <li>Dedicated distribution report with school photos</li>
-        <li>Invitation to witness a school delivery</li>
-        <li>Bi-annual impact call with the founding team</li>
-        <li>Logo on website, social media, and press materials</li>
-        <li>One custom story reflecting your organisation's values</li>
-      </ul>
-      <a href="mailto:rhea.divekar@gmail.com?subject=Chapter%20Partnership%20%E2%80%94%20Between%20the%20Dots&body=Hello%2C%0A%0AWe%20are%20interested%20in%20the%20Chapter%20Sponsorship%20tier.%0A%0APlease%20share%20more%20details.%0A%0AThank%20you." class="tier-cta">Become a Chapter Partner</a>
-    </div>
-    <div class="tier-card">
-      <div class="tier-braille"><div class="tbd on"></div><div class="tbd on"></div><div class="tbd on"></div><div class="tbd on"></div><div class="tbd on"></div><div class="tbd on"></div></div>
-      <div class="tier-name">Patron</div>
-      <div class="tier-tagline">Founding Institutional Partner</div>
-      <ul class="tier-perks">
-        <li>Fund an entire year of the programme</li>
-        <li>Named as Founding Patron on all programme materials</li>
-        <li>Full co-branding on every book produced that year</li>
-        <li>Quarterly impact reports with photography and student feedback</li>
-        <li>Advisory seat — contribute to story themes and outreach strategy</li>
-        <li>Annual event naming rights and first right of renewal</li>
-        <li>Dedicated press release and media opportunity</li>
-      </ul>
-      <a href="mailto:rhea.divekar@gmail.com?subject=Patron%20Partnership%20%E2%80%94%20Between%20the%20Dots&body=Hello%2C%0A%0AWe%20are%20interested%20in%20a%20Patron%20partnership.%0A%0APlease%20get%20in%20touch%20to%20discuss.%0A%0AThank%20you." class="tier-cta">Become a Patron</a>
-    </div>
-  </div>
-
-  <div class="section-label"><span class="bi">⠂</span> Ways To Get Involved</div>
-  <div class="partner-types-grid" style="margin-bottom:5rem">
-    <div class="ptype"><div class="ptype-icon">🏫</div><div><div class="ptype-title">Schools &amp; Institutions</div><p class="ptype-text">If you run or are affiliated with a blind school, special needs institution, or NGO — we want to bring books to your students. Register your school for donations. We will reach you.</p></div></div>
-    <div class="ptype"><div class="ptype-icon">✍️</div><div><div class="ptype-title">Writers &amp; Storytellers</div><p class="ptype-text">If you write short stories or children's fiction and want your work to reach a reader who truly needs it, contribute a story. All rights remain yours. Braille production is covered by us.</p></div></div>
-    <div class="ptype"><div class="ptype-icon">💼</div><div><div class="ptype-title">Corporates &amp; CSR Teams</div><p class="ptype-text">Looking for a disability-inclusion initiative that is tangible, trackable, and genuinely needed? Our Chapter and Patron tiers are designed for structured CSR partnerships.</p></div></div>
-    <div class="ptype"><div class="ptype-icon">🙌</div><div><div class="ptype-title">Volunteers &amp; Advocates</div><p class="ptype-text">No money needed — just time and belief. Help us with outreach, social media, school connections, or simply spreading the word. Every advocate makes the next book possible.</p></div></div>
-  </div>
+  <h2 class="partner-hero">"One visit can change the way you <em>see</em> the world."</h2>
+  <p class="partner-sub">Come see what's possible when we choose to make stories accessible to everyone.</p>
+  <p class="partner-quote-attr">⠿ Rhea Divekar · Founder, Between the Dots</p>
 
   <!-- CONTACT FORM -->
   <div class="contact-section">
@@ -857,9 +765,7 @@
           <label class="form-label">I am interested in</label>
           <select class="form-select" id="ftype" name="interest">
             <option value="">Select an option</option>
-            <option value="Seed Sponsorship">Seed Sponsorship — Individual</option>
-            <option value="Chapter Partnership">Chapter Partnership — Organisation / CSR</option>
-            <option value="Patron Partnership">Patron Partnership — Institutional</option>
+            <option value="Sponsorship or Donation">Sponsorship or donation</option>
             <option value="School Registration">Registering a school for donations</option>
             <option value="Contributing a Story">Contributing a story as a writer</option>
             <option value="Volunteering">Volunteering / Advocacy</option>
@@ -872,263 +778,102 @@
       </form>
     </div>
   </div>
-
-  <!-- FAQ -->
-  <div class="faq-section">
-    <h2 class="faq-title">Common Questions</h2>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I know my contribution actually reached a student?<span class="faq-toggle">+</span></div><div class="faq-a">Every distribution is documented — we collect acknowledgement letters from school principals, photograph the book delivery, and follow up with teacher feedback within 4–6 weeks. All sponsors and partners receive this documentation as part of their impact report.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are contributions tax-deductible?<span class="faq-toggle">+</span></div><div class="faq-a">We are working toward formal registration under Section 12A / 80G of the Indian Income Tax Act, which will make contributions eligible for tax exemption. Please reach out for the latest status — we are happy to share documentation of our current structure and registration timeline.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I specify which school receives the books I sponsor?<span class="faq-toggle">+</span></div><div class="faq-a">Yes — Chapter and Patron sponsors may request distribution to a specific school or region, subject to our existing NGO network. We will confirm feasibility before accepting the commitment. Seed sponsors are allocated to the school most in need at that time.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What languages are the stories written in?<span class="faq-toggle">+</span></div><div class="faq-a">Our initial collection is in English, written for English-medium blind schools. We are actively exploring Hindi and regional language editions — and would welcome partnerships with writers and transcribers who can support this expansion.</div></div>
-    <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">I'm a writer. Can I contribute without a financial commitment?<span class="faq-toggle">+</span></div><div class="faq-a">Absolutely. All intellectual property rights remain entirely with you — we only request the right to transcribe and distribute the story in Braille format for non-commercial, educational purposes. Reach out through the form above and we'll share our content guidelines.</div></div>
-  </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     TAB 4: READING ROOM
+     TAB 4: TRANSCRIBE GUIDE
 ═══════════════════════════════════════════ -->
 <section id="tab4">
-  <div class="section-label"><span class="bi">⠿</span> The Reading Room</div>
-  <h2 class="reading-hero">Original <em>stories,</em><br>felt by fingertip.</h2>
-  <p class="reading-hero-sub">Every story we produce is written to be experienced as much as read. Below are excerpts from our current collection — shown in print alongside their Braille dot rendering. This is what we put in children's hands.</p>
+  <div class="section-label"><span class="bi">⠿</span> Learn Braille</div>
+  <h2 class="reading-hero">Understand<br>the <em>dots.</em></h2>
+  <p class="reading-hero-sub">This guide was written by Rhea Divekar, founder of Between the Dots, to help anyone learn to read and write Braille — because understanding it is the first real step toward making the world more accessible.</p>
 
-  <!-- STORY CARDS -->
-  <div class="stories-row">
-
-    <!-- Story 1 -->
-    <div class="story-card">
-      <div class="story-card-header" onclick="toggleStory(this)">
-        <div class="story-card-meta">
-          <span class="story-tag">Adventure</span>
-          <span class="story-read-time">⠿ 8 min read</span>
-        </div>
-        <div class="story-title">The Lighthouse and the Storm</div>
-        <button class="story-expand-btn">Read Excerpt</button>
+  <!-- WAYS TO WRITE BRAILLE -->
+  <div class="guide-section">
+    <div class="section-label"><span class="bi">⠂</span> Ways to Write Braille</div>
+    <div class="guide-tools-grid">
+      <div class="guide-tool-card">
+        <div class="guide-tool-name">Slate &amp; Stylus</div>
+        <p class="guide-tool-text">A handheld tool, usually plastic, used with a stylus to emboss Braille dots onto paper.</p>
+        <div class="guide-steps-label">How to write using it</div>
+        <ol class="guide-steps">
+          <li>Place the paper into the slate and secure it.</li>
+          <li>Use the stylus to press the dots into the paper.</li>
+          <li>Since you're writing on the back of the paper, you write from right to left.</li>
+          <li>Turn the paper over to read the raised dots from left to right.</li>
+        </ol>
+        <p class="guide-note">⠿ Remember: you must write backwards, although you will read forwards.</p>
       </div>
-      <div class="story-body" id="story1">
-        <div class="story-text-panel">
-          <div class="story-author">An Original Story — Between the Dots</div>
-          <div class="story-excerpt">
-            <p>The night Priya's grandfather first showed her the light-keeper's logbook, the storm had already swallowed the horizon. She could feel it through the lighthouse walls — not in any dramatic way, but in the way the old stone breathed differently when the sea was angry.</p>
-            <p>"Every ship out there," her grandfather said, not looking up from his instrument panel, "knows we are here because of this light. They cannot see the rocks. They can only see us."</p>
-            <p>Priya pressed her palm flat against the cold glass of the lantern room. Outside, the rain fell sideways. The beam swept its patient arc through the dark — once, twice, again — like a slow, luminous heartbeat refusing to stop.</p>
-            <p>"What if the light goes out?" she asked.</p>
-            <p>He turned then. His face, worn and warm, held no worry. "Then we use everything else we have," he said. "Our voice. Our bells. Our hands." He placed his wrinkled hand over hers on the glass. "The sea does not stop needing to be found just because the light is gone."</p>
-          </div>
-        </div>
-        <div class="story-braille-panel">
-          <div class="braille-panel-label">⠿ Title in Braille — "The Lighthouse"</div>
-          <div class="braille-title-render" id="brailleRender1"></div>
-          <div class="braille-fun-fact">
-            <div class="braille-fun-fact-label">⠿ Did You Know</div>
-            <p>A skilled Braille reader reads with both hands simultaneously — one hand reading ahead while the other follows. This makes the experience rhythmic, almost musical in its own way.</p>
-          </div>
-        </div>
+      <div class="guide-tool-card">
+        <div class="guide-tool-name">Brailler</div>
+        <p class="guide-tool-text">A machine that works like a typewriter for Braille — it embosses raised dots directly onto paper.</p>
+        <div class="guide-steps-label">How it works</div>
+        <ol class="guide-steps">
+          <li>Six keys represent the six dots — <strong>3 2 1 | 4 5 6</strong>: left side dots 3, 2, 1; right side dots 4, 5, 6.</li>
+          <li>Press the keys simultaneously in combination, not individually, to form letters and symbols.</li>
+          <li>The space bar creates a space between words.</li>
+          <li>The enter bar is used to begin a new line.</li>
+        </ol>
       </div>
-    </div>
-
-    <!-- Story 2 -->
-    <div class="story-card">
-      <div class="story-card-header" onclick="toggleStory(this)">
-        <div class="story-card-meta">
-          <span class="story-tag">Slice of Life</span>
-          <span class="story-read-time">⠿ 6 min read</span>
-        </div>
-        <div class="story-title">Arjun's Orchestra</div>
-        <button class="story-expand-btn">Read Excerpt</button>
-      </div>
-      <div class="story-body" id="story2">
-        <div class="story-text-panel">
-          <div class="story-author">An Original Story — Between the Dots</div>
-          <div class="story-excerpt">
-            <p>Arjun had been collecting sounds since he was four years old. Not in jars or boxes — he had nowhere to put them — but in a long, unwritten list inside his head, ordered not by alphabet but by texture.</p>
-            <p>There were the smooth sounds: rain on a tin roof, his mother's bangles sliding down her wrist as she cooked, the hiss of a pressure cooker releasing steam. And then the rough ones: a bicycle chain skipping, the vegetable seller's cart on cobblestones, the crows arguing above the school's guava tree.</p>
-            <p>On Tuesday mornings, Arjun would sit at his classroom window and conduct them all. Not with a baton — just with his fingers, tapping the rhythm against his thigh. Nobody knew he was doing it. Nobody had to. The music was entirely, completely, precisely his.</p>
-            <p>When his teacher asked what he wanted to be when he grew up, he said, "A collector." She assumed he meant stamps. He didn't correct her.</p>
-          </div>
-        </div>
-        <div class="story-braille-panel">
-          <div class="braille-panel-label">⠿ Title in Braille — "Arjun"</div>
-          <div class="braille-title-render" id="brailleRender2"></div>
-          <div class="braille-fun-fact">
-            <div class="braille-fun-fact-label">⠿ Did You Know</div>
-            <p>Braille was originally based on a military code for reading messages at night without light. Louis Braille adapted it at the age of 15 — creating a system still in use 200 years later.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Story 3 -->
-    <div class="story-card">
-      <div class="story-card-header" onclick="toggleStory(this)">
-        <div class="story-card-meta">
-          <span class="story-tag">Friendship</span>
-          <span class="story-read-time">⠿ 10 min read</span>
-        </div>
-        <div class="story-title">The Girl Who Named the Wind</div>
-        <button class="story-expand-btn">Read Excerpt</button>
-      </div>
-      <div class="story-body" id="story3">
-        <div class="story-text-panel">
-          <div class="story-author">An Original Story — Between the Dots</div>
-          <div class="story-excerpt">
-            <p>Meera named the wind the same way other children named their pets: with great seriousness and without consulting anyone. The wind that came from the east — cool and a little apologetic — she called Neel. The hot, bossy one from the southwest she called Mira, after her least favourite aunt.</p>
-            <p>When the new girl arrived at school, she smelled of coconut oil and nervousness and something else — something Meera couldn't place. Like the air before the monsoon breaks.</p>
-            <p>"I'm Fatima," the girl said, in the particular way people introduce themselves when they're not sure they'll be remembered.</p>
-            <p>"I know," said Meera, though she didn't. "You smell like a new wind. I haven't named you yet."</p>
-            <p>Fatima went very quiet. Then she laughed — a sound that was, Meera decided, like the wind through bamboo. Bright and a little hollow and completely surprising.</p>
-            <p>"I'd like a good name," Fatima said carefully. "My last school gave me a bad one."</p>
-            <p>Meera considered this. "Tell me what direction you came from," she said, "and I'll decide."</p>
-          </div>
-        </div>
-        <div class="story-braille-panel">
-          <div class="braille-panel-label">⠿ Title in Braille — "Meera"</div>
-          <div class="braille-title-render" id="brailleRender3"></div>
-          <div class="braille-fun-fact">
-            <div class="braille-fun-fact-label">⠿ Did You Know</div>
-            <p>A single Braille page typically holds fewer words than a printed page. This means Braille books are physically larger — which is why short story formats are especially valuable for young readers beginning their Braille journey.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- BRAILLE FACTS -->
-  <div class="braille-facts-strip">
-    <div class="braille-fact"><div class="braille-fact-num">6</div><p class="braille-fact-text">dots in every Braille cell — arranged in a 2×3 grid, producing 64 possible combinations used across letters, numbers, punctuation, and formatting.</p></div>
-    <div class="braille-fact"><div class="braille-fact-num">125</div><p class="braille-fact-text">words per minute is the average reading speed of a skilled Braille reader — comparable to reading speed of an average sighted adult reading silently.</p></div>
-    <div class="braille-fact"><div class="braille-fact-num">1824</div><p class="braille-fact-text">the year Louis Braille completed his tactile writing system — at the age of just 15. Over two centuries later, it remains the global standard for blind literacy.</p></div>
-  </div>
-
-  <!-- POEMS -->
-  <div class="poem-section">
-    <div class="section-label"><span class="bi">⠿</span> Original Poems</div>
-    <h2>Words that <em>land</em><br>like raised dots.</h2>
-    <p class="poem-intro">Short original poems written for our collection — each one designed to work aloud, in print, and in Braille. Toggle between text and Braille view, or let the voice reader bring them to life.</p>
-    <div class="poems-grid">
-
-      <!-- POEM 1 -->
-      <div class="poem-card" id="pcard1">
-        <div class="poem-header">
-          <div class="poem-title">The Stars I Know</div>
-          <div class="poem-byline">⠿ Original Poem · Between the Dots</div>
-        </div>
-        <div class="poem-controls">
-          <button class="poem-btn active" onclick="switchPoemView('p1','text',this)">
-            <span class="poem-btn-icon">≡</span> Text
-          </button>
-          <button class="poem-btn" onclick="switchPoemView('p1','braille',this)">
-            <span class="poem-btn-icon">⠿</span> Braille
-          </button>
-          <button class="poem-btn voice-btn" id="vbtn1" onclick="toggleVoice('p1')">
-            <span class="poem-btn-icon">▶</span> Listen
-          </button>
-          <span class="poem-speed-label">Web Speech API · Natural voice</span>
-        </div>
-
-        <div class="poem-content">
-          <!-- TEXT VIEW -->
-          <div class="poem-view" id="p1-text">
-            <div class="poem-body" id="p1-textbody">I have not seen a star,
-but I have heard them described
-by three different people
-who each made them sound
-completely different.
-
-So I decided they are all right,
-and the stars
-must be like language —
-the same thing,
-felt differently
-by everyone who finds them.
-
-I will know mine
-when I touch them.</div>
-          </div>
-          <!-- BRAILLE VIEW -->
-          <div class="poem-view hidden" id="p1-braille">
-            <div class="poem-braille-view" id="p1-braillerender"></div>
-          </div>
-        </div>
-
-        <div class="poem-voice-status" id="vstatus1">
-          <div class="voice-wave">
-            <div class="voice-bar"></div><div class="voice-bar"></div>
-            <div class="voice-bar"></div><div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-          </div>
-          <span class="voice-status-text">Reading aloud…</span>
-          <div class="voice-progress"><div class="voice-progress-bar" id="vprog1"></div></div>
-        </div>
-      </div>
-
-      <!-- POEM 2 -->
-      <div class="poem-card" id="pcard2">
-        <div class="poem-header">
-          <div class="poem-title">What My Fingers Know</div>
-          <div class="poem-byline">⠿ Original Poem · Between the Dots</div>
-        </div>
-        <div class="poem-controls">
-          <button class="poem-btn active" onclick="switchPoemView('p2','text',this)">
-            <span class="poem-btn-icon">≡</span> Text
-          </button>
-          <button class="poem-btn" onclick="switchPoemView('p2','braille',this)">
-            <span class="poem-btn-icon">⠿</span> Braille
-          </button>
-          <button class="poem-btn voice-btn" id="vbtn2" onclick="toggleVoice('p2')">
-            <span class="poem-btn-icon">▶</span> Listen
-          </button>
-          <span class="poem-speed-label">Web Speech API · Natural voice</span>
-        </div>
-
-        <div class="poem-content">
-          <!-- TEXT VIEW -->
-          <div class="poem-view" id="p2-text">
-            <div class="poem-body" id="p2-textbody">My fingers know
-the weight of a mango before it falls,
-the mood of my grandmother's knitting,
-the lie in a smooth stone
-that looks lucky
-but isn't.
-
-They know the end of a page
-before I reach the last line.
-They know when a story
-is going somewhere good.
-
-The rest of you
-are still waiting
-for your eyes.
-
-I finished
-paragraphs ago.</div>
-          </div>
-          <!-- BRAILLE VIEW -->
-          <div class="poem-view hidden" id="p2-braille">
-            <div class="poem-braille-view" id="p2-braillerender"></div>
-          </div>
-        </div>
-
-        <div class="poem-voice-status" id="vstatus2">
-          <div class="voice-wave">
-            <div class="voice-bar"></div><div class="voice-bar"></div>
-            <div class="voice-bar"></div><div class="voice-bar"></div>
-            <div class="voice-bar"></div>
-          </div>
-          <span class="voice-status-text">Reading aloud…</span>
-          <div class="voice-progress"><div class="voice-progress-bar" id="vprog2"></div></div>
-        </div>
-      </div>
-
     </div>
   </div>
 
-  <!-- BRAILLE TRANSLATOR -->
+  <!-- BRAILLE ALPHABET REFERENCE -->
+  <div class="braille-showcase">
+    <h3>The Braille Alphabet</h3>
+    <p class="braille-showcase-sub">⠿ Standard English Braille — Grade 1 Alphabet · Each character is a 2×3 grid of raised dots</p>
+    <div class="braille-alpha-row" id="brailleAlphaGuide"></div>
+  </div>
+
+  <!-- BRAILLE GRAMMAR AND WRITING RULES -->
+  <div class="guide-section">
+    <div class="section-label"><span class="bi">⠂</span> Braille Grammar &amp; Writing Rules</div>
+
+    <div class="guide-rules-grid">
+      <div class="guide-rule-card">
+        <div class="guide-rule-title">Capital Letters</div>
+        <p class="guide-rule-text">A capital indicator — dot 6 — is placed directly before a letter to show that it's capitalised.</p>
+        <p class="guide-rule-example">Capital A = dot 6 + A</p>
+      </div>
+      <div class="guide-rule-card">
+        <div class="guide-rule-title">Numbers</div>
+        <p class="guide-rule-text">Numbers begin with a number sign (dots 3-4-5-6), followed by the Braille patterns for A–J.</p>
+        <p class="guide-rule-example">A corresponds to 1, and each letter continues accordingly, with J corresponding to 0.</p>
+      </div>
+    </div>
+
+    <div class="guide-punct-card">
+      <div class="guide-rule-title">Punctuation</div>
+      <p class="guide-rule-text">Punctuation is placed directly after the word it belongs to, with no space before it.</p>
+      <div class="guide-punct-table">
+        <div class="guide-punct-row"><span>Comma ,</span><span>dots 2</span></div>
+        <div class="guide-punct-row"><span>Full stop .</span><span>dots 2-5-6</span></div>
+        <div class="guide-punct-row"><span>Question mark ?</span><span>dots 2-6</span></div>
+        <div class="guide-punct-row"><span>Exclamation mark !</span><span>dots 2-3-5</span></div>
+        <div class="guide-punct-row"><span>Colon :</span><span>dots 2-5</span></div>
+        <div class="guide-punct-row"><span>Semicolon ;</span><span>dots 2-3</span></div>
+        <div class="guide-punct-row"><span>Apostrophe '</span><span>dot 3</span></div>
+        <div class="guide-punct-row"><span>Hyphen -</span><span>dots 3-6</span></div>
+      </div>
+    </div>
+
+    <div class="guide-rule-card guide-rule-card-wide">
+      <div class="guide-rule-title">Sentence Structure</div>
+      <ul class="guide-bullet-list">
+        <li>Leave one blank cell between words.</li>
+        <li>Use a capital indicator when a word begins with a capital letter.</li>
+        <li>Place punctuation directly after the word.</li>
+        <li>Use the number sign before numbers.</li>
+        <li>Grade 1 Braille writes words letter by letter, without contractions.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PRACTICE: BRAILLE TRANSLATOR -->
   <div class="translator-section">
-    <div class="section-label"><span class="bi">⠿</span> Interactive</div>
-    <h2>Write anything.<br>See it in <em>Braille.</em></h2>
-    <p class="translator-intro">Type any word or sentence below and watch it render as Braille dots in real time. This is the language our stories live in — felt, not seen.</p>
+    <div class="section-label"><span class="bi">⠿</span> Practice</div>
+    <h2>Try it <em>yourself.</em></h2>
+    <p class="translator-intro">Type any word or sentence below and watch it render as Braille dots in real time — a hands-on way to put what you've just learned into practice.</p>
     <div class="translator-box">
       <div class="translator-input-row">
         <div class="translator-input-wrap">
@@ -1150,7 +895,21 @@ paragraphs ago.</div>
     </div>
   </div>
 
+  <!-- TIPS AND TRICKS -->
+  <div class="guide-section">
+    <div class="section-label"><span class="bi">⠂</span> Tips &amp; Tricks</div>
+    <div class="guide-tips-grid">
+      <div class="guide-tip"><div class="guide-tip-num">01</div><p>Learn the six dots first: 1 4 / 2 5 / 3 6.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">02</div><p>Learn letters in groups instead of memorising every letter individually.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">03</div><p>Keep a dot-number chart nearby when practising or transcribing.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">04</div><p>Pay attention to punctuation — small mistakes can change the meaning of a sentence.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">05</div><p>Double-check numbers to make sure the number sign is included.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">06</div><p>Proofread by reading the Braille itself, not just by comparing it with the original text.</p></div>
+      <div class="guide-tip"><div class="guide-tip-num">07</div><p>Accuracy comes before speed — take your time, especially when transcribing a full book.</p></div>
+    </div>
+  </div>
 </section>
+
 
 <!-- ═══════════════════════════════════════════
      TAB 5: THE MAP
@@ -1175,6 +934,61 @@ paragraphs ago.</div>
     <div class="map-panel" id="mapPanel">
       <div class="map-panel-empty">⠿<br>Select a school<br>on the map</div>
     </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     TAB 6: ABOUT
+═══════════════════════════════════════════ -->
+<section id="tab6">
+  <div class="section-label"><span class="bi">⠿</span> The Founder</div>
+  <h2 class="about-hero">One girl, <em>a thousand dots.</em></h2>
+  <p class="about-hero-sub">Between the Dots didn't start as an organisation. It started as a habit of reading, a habit of writing, and a stubborn belief that both belong to every child.</p>
+
+  <div class="about-intro">
+    <div>
+      <div class="about-photo-frame">
+        <img src="assets/RheaDP.jpeg" alt="Rhea Divekar, founder of Between the Dots"/>
+      </div>
+      <div class="about-photo-caption">⠿ Rhea Divekar</div>
+    </div>
+    <div>
+      <div class="about-name">Rhea Divekar</div>
+      <div class="about-title">Founder, Between the Dots</div>
+      <p class="about-bio-text">I'm Rhea Divekar, founder of Between the Dots. I'm seventeen, studying the IB Diploma Programme at Victorious Kidss Educares in Pune. I've loved writing and reading for as long as I can remember. I'm a trained Indian classical dancer in Kathak and Bharatanatyam, and I have a deep interest in neuroscience, which I hope to pursue in the future.</p>
+      <div class="about-facts">
+        <span class="about-fact">Age 17</span>
+        <span class="about-fact">IBDP · Victorious Kidss Educares, Pune</span>
+        <span class="about-fact">Kathak &amp; Bharatanatyam</span>
+        <span class="about-fact">Aspiring Neuroscientist</span>
+        <span class="about-fact">Published Author</span>
+      </div>
+      <a class="about-linkedin" href="https://www.linkedin.com/in/rhea-divekar-ab12a6317" target="_blank" rel="noopener">⠿ Connect on LinkedIn ↗</a>
+    </div>
+  </div>
+
+  <div class="about-narrative">
+    <div class="about-narrative-block">
+      <div class="section-label"><span class="bi">⠂</span> The Magic I Find Behind Reading</div>
+      <p>Ever since I started reading, I never stopped. I don't mean reading in the everyday sense — texts, signs, the internet — I mean books. Everywhere I went as a child, there was always one in my hand, because books carried me somewhere far more <em>serene</em> than the world I was actually standing in.</p>
+    </div>
+    <div class="about-narrative-block">
+      <div class="section-label"><span class="bi">⠂</span> My Love For Writing</div>
+      <p>My first book was written when I was four — terrible illustrations, twenty spelling mistakes, and a passion I couldn't yet explain. I kept writing all through childhood and my teenage years, and that love only grew. I loved how a story could carry meaning without saying it outright, how it could share what I wanted the world to know, and how it let me become more of who I am. At thirteen, I published my first novel, <em>Eunoia of the Endless Horizon</em>, available on Amazon worldwide — and I'm nowhere near done writing.</p>
+    </div>
+    <div class="about-narrative-block">
+      <div class="section-label"><span class="bi">⠂</span> Where My Passion For Braille Began</div>
+      <p>At some point I decided I wanted to learn Braille, so I did. It started almost on a whim, but the dedication that followed surprised even me — I spent hours, days, memorising the number codes, the letters, how they looked, how they felt under my fingers. I learned to type Braille on a slate and a Brailler, and the first thing I ever transcribed was my own book of poetry.</p>
+    </div>
+    <div class="about-narrative-block">
+      <div class="section-label"><span class="bi">⠿</span> Where Between the Dots Started</div>
+      <p>Over time — through research, through paying attention to the world around me — it became clear that visually impaired children simply don't have enough access to creative writing. I wanted them to feel the same spark I did with fiction as a child. So I brought together everything I loved — writing, Braille, and the belief that every child deserves a story — and built Between the Dots: a way to bring reading to those who want it, but haven't had the chance.</p>
+    </div>
+  </div>
+
+  <div class="about-closing">
+    <p class="about-closing-text">"I wanted visually impaired kids to feel the spark I did with fictional novels."</p>
+    <p class="about-closing-attr">⠿ Rhea Divekar · Founder</p>
   </div>
 </section>
 
@@ -1295,9 +1109,11 @@ if(panel){
 
 /* ═══════════════════════════════════════════
    BRAILLE ALPHABET SHOWCASE
+   Reused in both The Work tab and the Transcribe Guide tab.
 ═══════════════════════════════════════════ */
-const alphaContainer = document.getElementById('brailleAlpha');
-if(alphaContainer){
+function renderBrailleAlphabet(containerId) {
+  const alphaContainer = document.getElementById(containerId);
+  if(!alphaContainer) return;
   'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('').forEach(letter => {
     const dots = BRAILLE[letter];
     const block = document.createElement('div');
@@ -1316,34 +1132,230 @@ if(alphaContainer){
     alphaContainer.appendChild(block);
   });
 }
+renderBrailleAlphabet('brailleAlpha');
+renderBrailleAlphabet('brailleAlphaGuide');
+
+/* Category classification is a best-effort read of the free-text `type` field
+   researched for each school — not a verified operator registry. Anything that
+   doesn't clearly say "government" or "NGO" is bucketed as Unspecified rather
+   than guessed into Private, since several types (e.g. a bare "Integrated
+   School — VI Section") don't actually tell us who runs it. Shared by the
+   schools map and the Events section below, so the same school is always
+   colored the same way everywhere on the site. */
+const CATEGORY_STYLE = {
+  Government: { label: 'Government', color: '#6b1937', glow: 'rgba(107,25,55,0.55)', bg: 'rgba(107,25,55,0.1)', border: 'rgba(107,25,55,0.35)' },
+  NGO:        { label: 'NGO-run',    color: '#6b8c6e', glow: 'rgba(107,140,110,0.55)', bg: 'rgba(107,140,110,0.1)', border: 'rgba(107,140,110,0.35)' },
+  Private:    { label: 'Private / Missionary', color: '#c76a3a', glow: 'rgba(199,106,58,0.55)', bg: 'rgba(199,106,58,0.1)', border: 'rgba(199,106,58,0.35)' },
+  Unspecified:{ label: 'Unspecified', color: 'rgba(43,20,27,0.55)', glow: 'rgba(43,20,27,0.3)', bg: 'rgba(43,20,27,0.06)', border: 'rgba(43,20,27,0.2)' },
+};
+const CATEGORY_ORDER = ['Government', 'NGO', 'Private', 'Unspecified'];
+
+function classifySchoolType(type) {
+  const t = (type || '').toLowerCase();
+  if (t.includes('government')) return 'Government';
+  if (t.includes('ngo')) return 'NGO';
+  if (t.includes('missionary') || t.includes('christian') || t.includes('private')) return 'Private';
+  return 'Unspecified';
+}
 
 /* ═══════════════════════════════════════════
-   STORY BRAILLE TITLE RENDERS
+   EVENTS — "ON THE GROUND"
+   To add a future event: add one object to EVENTS below, and drop its
+   photos in assets/events/<id>/1.jpeg, 2.jpeg, 3.jpeg... (in order) —
+   nothing else needs to change, the placard and photo stack are both
+   generated from this data. The most recent event by `dateValue` opens
+   automatically; older ones stay collapsed for the visitor to pick.
+   `schoolCategory` must be one of CATEGORY_STYLE's keys (Government/NGO/
+   Private/Unspecified — same scheme as the schools map) and `schoolUrl`
+   should be the school's own official site if one is confirmed to exist;
+   leave `schoolUrl` out rather than guess one.
 ═══════════════════════════════════════════ */
-function renderBrailleWord(word, containerId) {
-  const container = document.getElementById(containerId);
-  if(!container) return;
-  container.innerHTML = '';
-  word.toUpperCase().split('').forEach(ch => {
-    if(ch === ' ') { const sp = document.createElement('div'); sp.className='braille-space'; container.appendChild(sp); return; }
-    const dots = BRAILLE[ch];
-    if(!dots) return;
-    const wrap = document.createElement('div');
-    wrap.style.display='flex'; wrap.style.flexDirection='column'; wrap.style.alignItems='center'; wrap.style.gap='5px';
-    const cell = document.createElement('div');
-    cell.className = 'btc';
-    dotsToDisplay(dots).forEach(on => {
-      const d = document.createElement('div');
-      d.className = 'btc-dot '+(on?'on':'off');
-      cell.appendChild(d);
-    });
-    wrap.appendChild(cell);
-    container.appendChild(wrap);
+const EVENTS = [
+  {
+    id: 'poona-school-july-2026',
+    tag: 'School Visit',
+    school: 'The Poona School and Home for the Blind Boys',
+    schoolCategory: 'NGO',
+    schoolUrl: 'https://www.puneblindschool.org/',
+    location: 'Koregaon Park, Pune',
+    date: 'July 2026',
+    dateValue: '2026-07-01',
+    summary: 'An afternoon spent reading original poetry aloud with the students — and coming away with a clearer sense of why this work matters.',
+    narrative: [
+      "Founded in 1949, The Poona School and Home for the Blind Boys in Koregaon Park is one of the oldest institutions of its kind in India — and walking through its doors was different from anything I'd prepared for.",
+      "I'd printed copies of my own poetry, written to be felt as much as read, and handed them out one by one as the boys settled in. What struck me wasn't the novelty of it for them — it was how quickly the room turned attentive the moment paper touched their hands. A few read ahead before I'd even finished explaining the poem. Others asked questions I hadn't thought to answer in the writing itself.",
+      "I left with a clearer sense of why Between the Dots exists. These weren't children encountering literature for the first time — they were readers who simply hadn't been given enough to read. That gap is smaller to close than it looks, and closing it starts with visits like this one."
+    ],
+    quote: "They weren't encountering stories for the first time. They just hadn't been given enough to read.",
+    quoteAttr: 'Rhea Divekar · Founder, Between the Dots',
+    photoCount: 8,
+  },
+  // Add future events here — same shape, plus a new assets/events/<id>/ folder.
+];
+
+function eventPhotoPath(ev, n) {
+  return `assets/events/${ev.id}/${n}.jpeg`;
+}
+
+function eventSchoolTag(ev) {
+  const style = CATEGORY_STYLE[ev.schoolCategory] || CATEGORY_STYLE.Unspecified;
+  const link = ev.schoolUrl
+    ? `<a class="event-school-link" href="${ev.schoolUrl}" target="_blank" rel="noopener">${ev.school} ↗</a>`
+    : ev.school;
+  return `
+    <div class="event-school-row">
+      <div class="map-panel-tag" style="--tag-c:${style.color};--tag-bg:${style.bg};--tag-bd:${style.border}"><i></i>${style.label}</div>
+      <div class="event-school-name">${link}</div>
+    </div>`;
+}
+
+function renderEvents() {
+  const list = document.getElementById('eventsList');
+  if (!list) return;
+  const sorted = [...EVENTS].sort((a, b) => new Date(b.dateValue) - new Date(a.dateValue));
+  list.innerHTML = sorted.map(ev => `
+    <div class="event-placard" id="event-${ev.id}">
+      <div class="event-placard-header" onclick="toggleEvent('${ev.id}')">
+        <span class="event-placard-tag">${ev.tag}</span>
+        <div class="event-placard-info">
+          <div class="event-placard-school">${ev.school}</div>
+          <div class="event-placard-meta">⠿ ${ev.location} · ${ev.date}</div>
+        </div>
+        <button class="event-placard-toggle">View the Story</button>
+      </div>
+      <div class="event-placard-body">
+        <div class="event-placard-content">
+          <div>
+            ${eventSchoolTag(ev)}
+            <p class="event-summary">${ev.summary}</p>
+            <div class="event-narrative">${ev.narrative.map(p => `<p>${p}</p>`).join('')}</div>
+            <div class="event-quote">
+              <p>"${ev.quote}"</p>
+              <div class="event-quote-attr">⠿ ${ev.quoteAttr}</div>
+            </div>
+          </div>
+          <div>
+            <div class="event-photo-stack" id="stack-${ev.id}"></div>
+            <div class="event-photo-progress" id="progress-${ev.id}"></div>
+            <div class="event-photo-hint">⠿ Tap or swipe the photos</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+
+  // The latest visit opens by default; older ones are left for the visitor to pick.
+  if (sorted.length) openEvent(sorted[0].id);
+}
+
+const eventPhotoState = {}; // id -> { index, timer }
+
+function buildPhotoStack(ev) {
+  const stack = document.getElementById(`stack-${ev.id}`);
+  const progress = document.getElementById(`progress-${ev.id}`);
+  if (!stack || stack.dataset.built) return;
+  stack.dataset.built = '1';
+
+  for (let n = 1; n <= ev.photoCount; n++) {
+    const card = document.createElement('div');
+    card.className = 'event-photo-card';
+    const img = document.createElement('img');
+    img.src = eventPhotoPath(ev, n);
+    img.alt = `${ev.school} — photo ${n} of ${ev.photoCount}`;
+    img.loading = 'lazy';
+    card.appendChild(img);
+    stack.appendChild(card);
+  }
+  if (progress) {
+    progress.innerHTML = Array.from({ length: ev.photoCount }, (_, i) =>
+      `<div class="event-photo-dot${i === 0 ? ' active' : ''}"></div>`).join('');
+  }
+
+  eventPhotoState[ev.id] = { index: 0, timer: null };
+  layoutPhotoStack(ev.id);
+
+  let startX = null;
+  stack.addEventListener('pointerdown', e => { startX = e.clientX; });
+  stack.addEventListener('pointerup', e => {
+    if (startX === null) return;
+    const dx = e.clientX - startX;
+    startX = null;
+    if (Math.abs(dx) < 10) advanceEventPhoto(ev.id, 1);       // tap = next
+    else advanceEventPhoto(ev.id, dx < 0 ? 1 : -1);            // swipe left = next, right = previous
   });
 }
-renderBrailleWord('THE LIGHTHOUSE', 'brailleRender1');
-renderBrailleWord('ARJUN',          'brailleRender2');
-renderBrailleWord('MEERA',          'brailleRender3');
+
+function layoutPhotoStack(id) {
+  const ev = EVENTS.find(e => e.id === id);
+  const state = eventPhotoState[id];
+  const stack = document.getElementById(`stack-${id}`);
+  if (!ev || !state || !stack) return;
+  const cards = stack.querySelectorAll('.event-photo-card');
+  const n = ev.photoCount;
+  cards.forEach((card, i) => {
+    const offset = (i - state.index + n) % n;
+    if (offset > 3) {
+      card.style.opacity = '0';
+      card.style.zIndex = '0';
+      card.style.transform = 'translate(0,0) scale(0.9)';
+      return;
+    }
+    const shift = offset * 10;
+    const rotate = offset === 0 ? 0 : (i % 2 === 0 ? 1 : -1) * (2 + offset);
+    card.style.transform = `translate(${shift}px, ${shift}px) rotate(${rotate}deg) scale(${1 - offset * 0.04})`;
+    card.style.opacity = String(1 - offset * 0.22);
+    card.style.zIndex = String(n - offset);
+  });
+  document.querySelectorAll(`#progress-${id} .event-photo-dot`).forEach((d, i) => {
+    d.classList.toggle('active', i === state.index);
+  });
+}
+
+function advanceEventPhoto(id, dir) {
+  const state = eventPhotoState[id];
+  const ev = EVENTS.find(e => e.id === id);
+  if (!state || !ev) return;
+  state.index = (state.index + dir + ev.photoCount) % ev.photoCount;
+  layoutPhotoStack(id);
+  startEventAutoplay(id); // interacting resets the auto-advance timer
+}
+
+function startEventAutoplay(id) {
+  const state = eventPhotoState[id];
+  if (!state) return;
+  clearInterval(state.timer);
+  state.timer = setInterval(() => advanceEventPhoto(id, 1), 3200);
+}
+
+function stopEventAutoplay(id) {
+  const state = eventPhotoState[id];
+  if (state) clearInterval(state.timer);
+}
+
+function closeAllEvents() {
+  document.querySelectorAll('.event-placard.open').forEach(p => {
+    p.classList.remove('open');
+    stopEventAutoplay(p.id.replace('event-', ''));
+  });
+}
+
+function openEvent(id) {
+  const el = document.getElementById(`event-${id}`);
+  if (!el) return;
+  closeAllEvents();
+  el.classList.add('open');
+  buildPhotoStack(EVENTS.find(e => e.id === id));
+  startEventAutoplay(id);
+}
+
+function toggleEvent(id) {
+  const el = document.getElementById(`event-${id}`);
+  if (!el) return;
+  if (el.classList.contains('open')) closeAllEvents();
+  else openEvent(id);
+}
+
+renderEvents();
 
 /* ═══════════════════════════════════════════
    TAB SWITCHING
@@ -1362,6 +1374,11 @@ tabs.forEach(tab => {
     window.scrollTo({top:0, behavior:'smooth'});
     observeItems();
     if (tab.dataset.tab === 'tab5') initSchoolMap();
+    // Pause any open event's photo autoplay off-tab; resume it on return.
+    Object.keys(eventPhotoState).forEach(id => stopEventAutoplay(id));
+    if (tab.dataset.tab === 'tab2') {
+      document.querySelectorAll('#tab2 .event-placard.open').forEach(p => startEventAutoplay(p.id.replace('event-', '')));
+    }
   });
 });
 
@@ -1426,20 +1443,6 @@ const counterRow = document.getElementById('counterRow');
 if(counterRow) counterObserver.observe(counterRow);
 
 /* ═══════════════════════════════════════════
-   STORY EXPAND / COLLAPSE
-═══════════════════════════════════════════ */
-function toggleStory(headerEl) {
-  const card = headerEl.closest('.story-card');
-  const body = card.querySelector('.story-body');
-  const btn  = card.querySelector('.story-expand-btn');
-  const isOpen = body.classList.contains('open');
-  // Close all first
-  document.querySelectorAll('.story-body.open').forEach(b => b.classList.remove('open'));
-  document.querySelectorAll('.story-expand-btn').forEach(b => b.textContent = 'Read Excerpt');
-  if(!isOpen){ body.classList.add('open'); btn.textContent = 'Collapse'; }
-}
-
-/* ═══════════════════════════════════════════
    BRAILLE TRANSLATOR
 ═══════════════════════════════════════════ */
 function translateToBraille() {
@@ -1481,16 +1484,6 @@ function translateToBraille() {
 function clearTranslator() {
   document.getElementById('translatorInput').value = '';
   translateToBraille();
-}
-
-/* ═══════════════════════════════════════════
-   FAQ
-═══════════════════════════════════════════ */
-function toggleFaq(el) {
-  const item = el.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-  if(!isOpen) item.classList.add('open');
 }
 
 /* ═══════════════════════════════════════════
@@ -1544,226 +1537,7 @@ function submitContactForm(event) {
   return false;
 }
 
-/* ═══════════════════════════════════════════
-   POEM BRAILLE RENDERER
-═══════════════════════════════════════════ */
-const POEMS = {
-  p1: {
-    text: `I have not seen a star,
-but I have heard them described
-by three different people
-who each made them sound
-completely different.
-
-So I decided they are all right,
-and the stars
-must be like language —
-the same thing,
-felt differently
-by everyone who finds them.
-
-I will know mine
-when I touch them.`,
-    readText: `I have not seen a star... but I have heard them described by three different people... who each made them sound... completely different.
-
-So I decided they are all right... and the stars must be like language — the same thing... felt differently by everyone who finds them.
-
-I will know mine... when I touch them.`
-  },
-  p2: {
-    text: `My fingers know
-the weight of a mango before it falls,
-the mood of my grandmother's knitting,
-the lie in a smooth stone
-that looks lucky
-but isn't.
-
-They know the end of a page
-before I reach the last line.
-They know when a story
-is going somewhere good.
-
-The rest of you
-are still waiting
-for your eyes.
-
-I finished
-paragraphs ago.`,
-    readText: `My fingers know... the weight of a mango before it falls... the mood of my grandmother's knitting... the lie in a smooth stone... that looks lucky... but isn't.
-
-They know the end of a page... before I reach the last line. They know when a story... is going somewhere good.
-
-The rest of you... are still waiting... for your eyes.
-
-I finished... paragraphs ago.`
-  }
-};
-
-function renderPoemBraille(poemId) {
-  const poem = POEMS[poemId];
-  const container = document.getElementById(poemId + '-braillerender');
-  if(!container || container.dataset.rendered) return;
-  container.dataset.rendered = '1';
-
-  const stanzas = poem.text.split('\n\n');
-  stanzas.forEach((stanza, si) => {
-    const stanzaEl = document.createElement('div');
-    stanzaEl.className = 'poem-braille-stanza';
-    const lines = stanza.split('\n');
-    lines.forEach(line => {
-      const lineRow = document.createElement('div');
-      lineRow.className = 'poem-braille-line-row';
-      const words = line.split(' ');
-      words.forEach((word, wi) => {
-        if(wi > 0) { const gap = document.createElement('div'); gap.className='poem-braille-gap'; lineRow.appendChild(gap); }
-        // Render word as braille cells
-        const wordEl = document.createElement('div');
-        wordEl.className = 'poem-braille-word';
-        word.toUpperCase().replace(/[^A-Z0-9,.'!?\-]/g,'').split('').forEach(ch => {
-          const dots = BRAILLE[ch];
-          if(!dots) return;
-          const cell = document.createElement('div');
-          cell.className = 'pbc';
-          dotsToDisplay(dots).forEach(on => {
-            const d = document.createElement('div');
-            d.className = 'pbd '+(on?'on':'off');
-            cell.appendChild(d);
-          });
-          wordEl.appendChild(cell);
-        });
-        if(wordEl.children.length) lineRow.appendChild(wordEl);
-      });
-      if(lineRow.children.length) stanzaEl.appendChild(lineRow);
-    });
-    container.appendChild(stanzaEl);
-    if(si < stanzas.length - 1) {
-      const br = document.createElement('div');
-      br.className = 'poem-braille-stanza-break';
-      container.appendChild(br);
-    }
-  });
-}
-
-// Pre-render both poems
-['p1','p2'].forEach(id => renderPoemBraille(id));
-
-function switchPoemView(poemId, view, btnEl) {
-  const textView   = document.getElementById(poemId + '-text');
-  const brailleView= document.getElementById(poemId + '-braille');
-  const allBtns = btnEl.closest('.poem-controls').querySelectorAll('.poem-btn:not(.voice-btn)');
-  allBtns.forEach(b => b.classList.remove('active'));
-  btnEl.classList.add('active');
-  if(view === 'text') {
-    textView.classList.remove('hidden');
-    brailleView.classList.add('hidden');
-  } else {
-    textView.classList.add('hidden');
-    brailleView.classList.remove('hidden');
-  }
-}
-
-/* ═══════════════════════════════════════════
-   VOICE READER (Web Speech API)
-═══════════════════════════════════════════ */
-let voiceState = { p1: 'idle', p2: 'idle' };
-let utterances = {};
-
-function getBestVoice() {
-  const voices = window.speechSynthesis.getVoices();
-  // Priority: English female voices with natural/premium quality
-  const priority = [
-    v => v.name.includes('Samantha'),          // macOS natural
-    v => v.name.includes('Karen'),
-    v => v.name.includes('Daniel'),
-    v => v.name.includes('Google UK English Female'),
-    v => v.name.includes('Google US English'),
-    v => v.lang === 'en-GB' && !v.localService,
-    v => v.lang.startsWith('en-') && !v.localService,
-    v => v.lang.startsWith('en-'),
-  ];
-  for(const test of priority) {
-    const match = voices.find(test);
-    if(match) return match;
-  }
-  return voices.find(v => v.lang.startsWith('en')) || voices[0] || null;
-}
-
-function toggleVoice(poemId) {
-  if(!window.speechSynthesis) {
-    alert('Your browser does not support the Web Speech API. Try Chrome or Safari.');
-    return;
-  }
-  const state  = voiceState[poemId];
-  const btn    = document.getElementById('vbtn' + poemId.slice(-1));
-  const status = document.getElementById('vstatus' + poemId.slice(-1));
-  const prog   = document.getElementById('vprog' + poemId.slice(-1));
-
-  if(state === 'playing') {
-    window.speechSynthesis.cancel();
-    setVoiceIdle(poemId);
-    return;
-  }
-
-  // Stop any other poem reading
-  ['p1','p2'].forEach(id => { if(id !== poemId && voiceState[id] !== 'idle') { window.speechSynthesis.cancel(); setVoiceIdle(id); }});
-
-  const poem = POEMS[poemId];
-  const u = new SpeechSynthesisUtterance(poem.readText);
-  u.rate  = 0.82;      // deliberate, poetic pace
-  u.pitch = 1.08;      // slightly warm
-  u.volume= 1;
-
-  // Set voice (may need delay for voices to load)
-  const setVoiceAndSpeak = () => {
-    const v = getBestVoice();
-    if(v) u.voice = v;
-    window.speechSynthesis.speak(u);
-  };
-
-  const voices = window.speechSynthesis.getVoices();
-  if(voices.length) { setVoiceAndSpeak(); }
-  else { window.speechSynthesis.onvoiceschanged = setVoiceAndSpeak; }
-
-  // Track progress
-  const totalLen = poem.readText.length;
-  u.onboundary = (e) => {
-    const pct = Math.min(100, Math.round((e.charIndex / totalLen) * 100));
-    prog.style.width = pct + '%';
-  };
-  u.onstart = () => {
-    voiceState[poemId] = 'playing';
-    btn.classList.add('playing');
-    btn.innerHTML = '<span class="poem-btn-icon">■</span> Stop';
-    status.classList.add('visible');
-    prog.style.width = '0%';
-    // Pulse the braille view if open
-    const bv = document.getElementById(poemId + '-braillerender');
-    if(bv) bv.classList.add('poem-speaking');
-  };
-  u.onend = u.onerror = () => setVoiceIdle(poemId);
-
-  utterances[poemId] = u;
-}
-
-function setVoiceIdle(poemId) {
-  voiceState[poemId] = 'idle';
-  const idx = poemId.slice(-1);
-  const btn    = document.getElementById('vbtn' + idx);
-  const status = document.getElementById('vstatus' + idx);
-  const prog   = document.getElementById('vprog' + idx);
-  if(btn)    { btn.classList.remove('playing'); btn.innerHTML = '<span class="poem-btn-icon">▶</span> Listen'; }
-  if(status) status.classList.remove('visible');
-  if(prog)   prog.style.width = '0%';
-  const bv = document.getElementById(poemId + '-braillerender');
-  if(bv) bv.classList.remove('poem-speaking');
-}
-
-// Stop voice on tab switch
-tabs.forEach(tab => tab.addEventListener('click', () => {
-  window.speechSynthesis && window.speechSynthesis.cancel();
-  ['p1','p2'].forEach(id => setVoiceIdle(id));
-}));
-document.querySelectorAll('button,a,.mission-card,.step,.stat-block,.why-card,.tier-card,.ptype,.faq-q,.story-card-header,.poem-card,.yt-point,.counter-block').forEach(el => {
+document.querySelectorAll('button,a,.mission-card,.step,.stat-block,.guide-tool-card,.guide-rule-card,.guide-tip,.yt-point,.counter-block').forEach(el => {
   el.addEventListener('mouseenter', () => { ring.style.opacity='0.4'; });
   el.addEventListener('mouseleave', () => { ring.style.opacity='1'; });
 });
@@ -1780,27 +1554,6 @@ let stateLabelsLayer = null;
 let allSchools = [];
 let markerById = {};
 let schoolById = {};
-
-/* Category classification is a best-effort read of the free-text `type` field
-   researched for each school — not a verified operator registry. Anything that
-   doesn't clearly say "government" or "NGO" is bucketed as Unspecified rather
-   than guessed into Private, since several types (e.g. a bare "Integrated
-   School — VI Section") don't actually tell us who runs it. */
-const CATEGORY_STYLE = {
-  Government: { label: 'Government', color: '#6b1937', glow: 'rgba(107,25,55,0.55)', bg: 'rgba(107,25,55,0.1)', border: 'rgba(107,25,55,0.35)' },
-  NGO:        { label: 'NGO-run',    color: '#6b8c6e', glow: 'rgba(107,140,110,0.55)', bg: 'rgba(107,140,110,0.1)', border: 'rgba(107,140,110,0.35)' },
-  Private:    { label: 'Private / Missionary', color: '#c76a3a', glow: 'rgba(199,106,58,0.55)', bg: 'rgba(199,106,58,0.1)', border: 'rgba(199,106,58,0.35)' },
-  Unspecified:{ label: 'Unspecified', color: 'rgba(43,20,27,0.55)', glow: 'rgba(43,20,27,0.3)', bg: 'rgba(43,20,27,0.06)', border: 'rgba(43,20,27,0.2)' },
-};
-const CATEGORY_ORDER = ['Government', 'NGO', 'Private', 'Unspecified'];
-
-function classifySchoolType(type) {
-  const t = (type || '').toLowerCase();
-  if (t.includes('government')) return 'Government';
-  if (t.includes('ngo')) return 'NGO';
-  if (t.includes('missionary') || t.includes('christian') || t.includes('private')) return 'Private';
-  return 'Unspecified';
-}
 
 function normalizeSchool(r) {
   const type = r.type || '';
